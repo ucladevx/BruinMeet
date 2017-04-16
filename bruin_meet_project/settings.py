@@ -1,3 +1,4 @@
+from settings_secret import *
 """
 Django settings for bruin_meet_project project.
 
