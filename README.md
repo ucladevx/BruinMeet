@@ -15,9 +15,19 @@ A unified, interactive platform for UCLA students to search and create social gr
 
 5. Enter in your own secret key and username/password for Postgresql in bruin_meet_project/settings_secret.py
 
-5. `python manage.py runserver` to start server, view at localhost:8080
+6. `sudo su - postgres`
+   `psql`
+   `CREATE DATABASE bruin_meet;
+   `CREATE USER bruin_meet_user WITH PASSWORD 'bruin_meet_pass';`
+   `GRANT ALL PRIVILEGES ON DATABASE bruin_meet TO bruin_meet_user;`
+   `\q`
+   `exit`   
 
-6. `deactivate` to exit python virtual env
+7. `python manage.py makemigrations`
+   `python manage.py migrate`
+   `python manage.py runserver` to start server, view at localhost:8080
+
+8. `deactivate` to exit python virtual env
 
 ## Other
 Forward all comments/bugs to bruinmeet.devx@gmail.com
