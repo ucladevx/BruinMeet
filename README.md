@@ -2,7 +2,7 @@
 A unified, interactive platform for UCLA students to search and create social groups
 
 ## Dependencies
-1. Python 2.7
+Python 2.7, Django, PostgreSQL, psycopg2 django-webpacker-loader 0.4.1
 
 ## Test app
 `cd BruinMeet`
@@ -16,15 +16,23 @@ A unified, interactive platform for UCLA students to search and create social gr
 Enter in your own secret key and username/password for Postgresql in bruin_meet_project/settings_secret.py
 
 `sudo su - postgres`
+
 `psql`
-`CREATE DATABASE bruin_meet;
+
+`CREATE DATABASE bruin_meet;`
+
 `CREATE USER bruin_meet_user WITH PASSWORD 'bruin_meet_pass';`
+
 `GRANT ALL PRIVILEGES ON DATABASE bruin_meet TO bruin_meet_user;`
+
 `\q`
+
 `exit`   
 
 `python manage.py makemigrations`
+
 `python manage.py migrate`
+
 `python manage.py runserver` to start server, view at localhost:8080
 
 `deactivate` to exit python virtual env
