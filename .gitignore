@@ -1,7 +1,3 @@
-bruin_meet_project/settings_secret.py
-bruin_meet_project/settings_secret.pyc
-bruin_meet_project/settings_secret.py~
-
 # Node Related
 # Logs
 logs
@@ -61,3 +57,12 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# important vars
+bruin_meet_project/settings_secret.py
+bruin_meet_project/settings_secret.pyc
+bruin_meet_project/settings_secret.py~
+bruin_meet_project/production.py
+bruin_meet_project/production.pyc
+bruin_meet_project/production.py~
+
