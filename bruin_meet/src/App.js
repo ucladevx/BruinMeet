@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
-import addIcon from './img/ic-plus.png';
-import menuIcon from './img/ic-menu.png';
+import Header from './components/header.js';
+import EventList from './components/eventlist.js';
+import Login from './components/login.js';
 import './styles/App.css';
 
 class App extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+        loginPage: false,
+        loggedIn: false,
+        cardNumber: 1
+      };
+  }
+
   render() {
     return (
       <div className="body">
-        <div className="home-header">
-          <a className="btn-header">
-            <img src={menuIcon} className="ic-circular" />
-          </a>
-          <p className="txt-header color-blue">Bruin Meet</p>
-          <a className="btn-header">
-            <img src={addIcon} className="ic-circular" />
-          </a>
-        </div>
-        <div className="search-header">
-          <p className="txt-header">I am looking for a study partner</p>
-        </div>
+        <Header
+          onLogin={() => this.setState({ loginPage: !this.state.loginPage })}
+          loggedIn={this.state.loggedIn}
+          onAdd={() => this.setState({ cardNumber: this.state.cardNumber + 1 })} />
+        {this.state.loginPage
+        ? <Login onLogin={() => this.setState({ loggedIn: true, loginPage: false })} />
+        : <EventList eventNumber={this.state.cardNumber} />
+        }
       </div>
     );
   }
