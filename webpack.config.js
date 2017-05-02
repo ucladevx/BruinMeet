@@ -6,7 +6,7 @@ var BundleTracker = require('webpack-bundle-tracker')
 module.exports = {
     // the base directory (abs path) for resolving the entry option
     context: __dirname,
-    entry: './assets/js/index',
+    entry: './assets/src/index',
     output: {
 	// compiled bundle to be stored here
 	path: path.resolve('./assets/bundles/'),
@@ -36,8 +36,20 @@ module.exports = {
 	     query: {
 		 // specify use of react code
 		 presets: ['react']
-	     }
-	    }
+       },
+     },
+     {
+    test: /\.css$/,
+    loaders: [
+        'style?sourceMap',
+        'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+    ]
+  },
+  {
+    test: /\.png$/,
+    loader: "url-loader",
+    query: { mimetype: "image/png" }
+  }
 	]
     },
 

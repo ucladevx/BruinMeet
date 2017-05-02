@@ -1,0 +1,16 @@
+.container {
+  width: 300px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+input {
+  font-size: 1.5em;
+  margin-bottom: 0.3em;
+}
+
+.login {
+  align-self: flex-end;
+}
