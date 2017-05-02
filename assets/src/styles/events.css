@@ -1,0 +1,85 @@
+.event-list {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2em 0 2em 0;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 0px 1px 3px #DCDCDC;
+  position: relative;
+  padding: 1em 1.2em 1em 2em;
+  min-width: 300px;
+  margin: 1.5em;
+}
+
+.event-side {
+  position: absolute;
+  width: 10px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #F00A6B;
+}
+
+.event-title {
+  color: #3E3E3E;
+  font-weight: 600;
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.event-location {
+  color: #BABABA;
+  margin-bottom: 0;
+}
+
+.event-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.event-tags {
+  display: flex;
+  flex-direction: row;
+}
+
+.event-tag {
+  background-color: #D8D8D8;
+  display: flex;
+  padding: 5px;
+  margin-right: 8px;
+}
+
+.event-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.event-detail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 12px;
+}
+
+.event-detail-txt {
+  margin: 0 0 0 5px;
+}
+
+.ic-heart {
+  width: 18px;
+  height: 16px;
+}
+
+.ic-people {
+  width: 29px;
+  height: 18px;
+}
