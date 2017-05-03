@@ -58,6 +58,10 @@ typings/
 # dotenv environment variables file
 .env
 
+# compiled files
+bruin_meet_project/*.pyc
+bruin_meet_project/*~
+
 # important vars
 bruin_meet_project/settings_secret.py
 bruin_meet_project/settings_secret.pyc
