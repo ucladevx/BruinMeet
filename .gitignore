@@ -64,9 +64,5 @@ bruin_meet_project/*~
 
 # important vars
 bruin_meet_project/settings_secret.py
-bruin_meet_project/settings_secret.pyc
-bruin_meet_project/settings_secret.py~
 bruin_meet_project/production.py
-bruin_meet_project/production.pyc
-bruin_meet_project/production.py~
 

@@ -4,6 +4,8 @@ A unified, interactive platform for UCLA students to search and create social gr
 ## Dependencies
 Python 2.7, Django, PostgreSQL, psycopg2 django-webpacker-loader 0.4.1
 
+Download PostgreSQL for mac here (https://www.enterprisedb.com/downloads/postgres-postgresql-downloads#macosx).
+
 ## Test app
 `cd BruinMeet`
 
@@ -14,8 +16,12 @@ Python 2.7, Django, PostgreSQL, psycopg2 django-webpacker-loader 0.4.1
 `mv bruin_meet_project/settings_secret.py.template bruin_meet_project/settings_secret.py`
 Enter in your own secret key and username/password for Postgresql in bruin_meet_project/settings_secret.py
 
-`sudo su - postgres`
-`psql`
+`sudo su - postgres` then `psql`
+or `psql -U postgres`
+
+To log into our Amazon RDS database: 
+`psql --host=bmdb.c6oxazuezpo9.us-west-1.rds.amazonaws.com --port=5432 --username=bruinmeet --password --dbname=postgres`
+
 
 `CREATE DATABASE bruin_meet;`
 `CREATE USER bruin_meet_user WITH PASSWORD 'bruin_meet_pass';`
@@ -27,7 +33,7 @@ Enter in your own secret key and username/password for Postgresql in bruin_meet_
 
 `echo "sql_mu_in=\'insert into schema_name.db_name (email, password) values (%s, %s);\'" >> bruin_meet_project/production.py`
 
-`echo "sql_mu=\'select * from schema_name.db_name\'" >> bruin_meet_project/production.py
+`echo "sql_mu=\'select * from schema_name.db_name\'" >> bruin_meet_project/production.py`
 
 `python manage.py makemigrations`
 
