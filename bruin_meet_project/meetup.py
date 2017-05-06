@@ -1,12 +1,9 @@
 import psycopg2
-import production
+import production, utils
 
 conn_str = production.conn_str
 sql_mm = production.sql_mm
 sql_mm_in = production.sql_mm_in
-
-def create_meetup_id(title):
-    return 123
 
 def is_valid_meetup_info(info):
     return True
@@ -14,14 +11,15 @@ def is_valid_meetup_info(info):
 def insert_meetup(title, description, t_time, location, maxim_cap, people):
     print "\nCreating meetup", title
     print "description:\t", description
-    print "time:\t", time
+    print "time:\t\t", t_time
     print "location:\t", location
     print "maximum cap:\t", maxim_cap
 
-    meetup_id = create_meetup_id(title)
-    info = [title, description, t_time, location, maxim_cap, 1]
+    hash_seed = str(title) + str(description) + str(t_time) + str(location) + str(maxim_cap)
+    meetup_id = utils.create_hash(hash_seed)
+    info = [meetup_id, title, description, t_time, location, maxim_cap]
 
-    if not utils.is_valid_meetup_info(info):
+    if not is_valid_meetup_info(info):
         print "Unable to create meetup", title, "(insert_meetup)"
         return False
     
@@ -31,7 +29,7 @@ def insert_meetup(title, description, t_time, location, maxim_cap, people):
     try:
         conn = psycopg2.connect(conn_str)
         cur = conn.cursor()
-        meetup_id = 1234
+        people = 1
         cur.execute(sql_mm_in, (meetup_id, title, description, t_time, location, maxim_cap, people))
         conn.commit()
         cur.close()
