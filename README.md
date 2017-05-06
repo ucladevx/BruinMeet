@@ -1,47 +1,32 @@
 # BruinMeet
-A unified, interactive platform for UCLA students to search and create social groups
+A unified, interactive platform for UCLA students to search and create social groups.
+
+Forward all comments/suggestions/bugs to bruinmeet.devx@gmail.com
 
 ## Dependencies
 Python 2.7, Django, PostgreSQL, psycopg2 django-webpacker-loader 0.4.1
 
-Download PostgreSQL for mac here (https://www.enterprisedb.com/downloads/postgres-postgresql-downloads#macosx).
+Download PostgreSQL for Mac: https://www.enterprisedb.com/downloads/postgres-postgresql-downloads#macosx
 
 ## Test app
-`cd BruinMeet`
+1. `git clone https://github.com/ucladevx/BruinMeet.git`
 
-`source bruin_meet_env/bin/activate` to enter python virtual env
+2. `cd BruinMeet`
 
-`./node_modules/.bin/webpack --config webpack.config.js` if you modify the React code at assets/js/index.js
+3. `source bruin_meet_env/bin/activate`
 
-`mv bruin_meet_project/settings_secret.py.template bruin_meet_project/settings_secret.py`
-Enter in your own secret key and username/password for Postgresql in bruin_meet_project/settings_secret.py
+4. `mv bruin_meet_project/settings_secret.py.template bruin_meet_project/settings_secret.py`
 
-`sudo su - postgres` then `psql`
-or `psql -U postgres`
+5. `mv bruin_meet_project/production.py.template bruin_meet_project/production.py`
+       
+6. Follow database commands in db_insns.txt after `sudo su - postgres` and `psql`
 
-To log into our Amazon RDS database: 
-`psql --host=bmdb.c6oxazuezpo9.us-west-1.rds.amazonaws.com --port=5432 --username=bruinmeet --password --dbname=postgres`
+7. `python manage.py makemigrations`
 
+8. `python manage.py migrate`
 
-`CREATE DATABASE bruin_meet;`
-`CREATE USER bruin_meet_user WITH PASSWORD 'bruin_meet_pass';`
-`GRANT ALL PRIVILEGES ON DATABASE bruin_meet TO bruin_meet_user;`
-`\q`
-`exit`   
+9. In a second terminal, `npm i` and `npm start`
 
-`echo "conn_str=\"dbname=\'db_name\' user=\'"bd_user\' password=\'db_user_pass\' host=\'localhost\'\"" > bruin_meet_project/production.py`
+10. In the original terminal, `python manage.py runserver 0.0.0.0:8000`
 
-`echo "sql_mu_in=\'insert into schema_name.db_name (email, password) values (%s, %s);\'" >> bruin_meet_project/production.py`
-
-`echo "sql_mu=\'select * from schema_name.db_name\'" >> bruin_meet_project/production.py`
-
-`python manage.py makemigrations`
-
-`python manage.py migrate`
-
-`python manage.py runserver` to start server, view at localhost:8080
-
-`deactivate` to exit python virtual env
-
-## Other
-Forward all comments/bugs to bruinmeet.devx@gmail.com
+Now go to "localhost:8080" in your browser
