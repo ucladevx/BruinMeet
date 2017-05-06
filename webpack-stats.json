@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"status":"done","chunks":{"main":[{"name":"main-c7b134fb74b9a063d53f.js","path":"/Users/Tom/Documents/Projects/BruinMeet/assets/bundles/main-c7b134fb74b9a063d53f.js"}]}}
-=======
-{"status":"done","chunks":{"main":[{"name":"main-794331b52d4b0a87a755.js","path":"/Users/Tom/Documents/Projects/BruinMeet/assets/bundles/main-794331b52d4b0a87a755.js"}]}}
->>>>>>> 2eec02d44ca4495d4cf7df9f7e6e05e3d8407ebd
+{"status":"error","publicPath":"http://localhost:3000/assets/bundles/","chunks":{"main":[{"name":"main-e15f7a9713eee4d07071.js","publicPath":"http://localhost:3000/assets/bundles/main-e15f7a9713eee4d07071.js","path":"/Users/Tom/Documents/Projects/BruinMeet/assets/bundles/main-e15f7a9713eee4d07071.js"},{"name":"0.9d7e5c1e50e7fea7d9b5.hot-update.js","publicPath":"http://localhost:3000/assets/bundles/0.9d7e5c1e50e7fea7d9b5.hot-update.js","path":"/Users/Tom/Documents/Projects/BruinMeet/assets/bundles/0.9d7e5c1e50e7fea7d9b5.hot-update.js"}]},"error":"ModuleBuildError","message":"Module build failed: Error: ENOENT: no such file or directory, open '/Users/Tom/Documents/Projects/BruinMeet/bruin_meet_project/src/index.js'\n    at Error (native)"}
