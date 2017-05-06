@@ -1,5 +1,5 @@
-import psycopg2
-import production
+import psycopg2, re
+import production, utils
 
 conn_str = production.conn_str
 sql_mu = production.sql_mu
@@ -7,12 +7,12 @@ sql_mu_in = production.sql_mu_in
 
 def insert_user(email, password):
     print "\nInserting", email, "with", password, ".... (insert_user)"
-    if not utils.is_valid_email(email):
+    if not is_valid_email(email):
         print "Unable to create user", email, "(insert_user)"
         return False    
     conn = None
     success = True
-    user_id = utils.create_user_id(email, password)
+    user_id = utils.create_hash(str(email)+str(password))
     if not user_id:
         print "Unable to create user id (insert_user)"
         return False
@@ -86,6 +86,3 @@ def is_valid_login(email, password):
                 return False
     print "Invalid Login (utils)"
     return False
-
-def create_user_id(email, password):
-    return 123
