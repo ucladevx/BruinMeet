@@ -80,7 +80,7 @@ def is_valid_login(email, password):
         if row[0].rstrip() == email:
             if row[1].rstrip() == password:
                 print "Valid Login (utils)"
-                return True
+                return row[2].rstrip() # user_id
             else:
                 print "Invalid Login (utils)"
                 return False

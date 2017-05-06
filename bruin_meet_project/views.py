@@ -4,54 +4,49 @@ from django.template import Context, Template, loader
 
 import user, meetup, production
 
-conn_str = production.conn_str
-sql_mm = production.sql_mm
-
 # Landing page
 def welcome(request):
-    meetups = meetup.get_all_meetups()    
-    return render(request, 'index.html', {'meetups': meetups,})
+    if request.method == "GET":
+        cookie = response.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
+        if cookie:
+            cookie_uID = utils.check_cookie(cookie)
+            if cookie_uID:
+                user_meetups = meetup.get_user_meetups(cookie_uID)
+                nonuser_meetups = meetup.get_nonuser_meetups(cookie_uID)
+                return render(request, 'index.html',
+                              {'validUser': 'True',
+                               'user_meetups': user_meetups,
+                               'nonuser_meetups': nonuser_meetups})
+        nonuser_meetups = meetup.get_all_meetups()    
+        return render(request, 'index.html',
+                      {'validUser': 'False',
+                       'nonuser_meetups': nonuser_meetups})
+    return False
 
-# Individualized home page
-def home(request):
-    return render(request, 'home.html')
-
-# Login page
+# API to authenticate login info
 def login(request):
-    if request.method == "GET":
-        return render(request, 'login.html')
-    elif request.method == "POST":
-        email = request.POST.get('email')
-        password = request.POST.get('password')
+    if request.method == "POST":
+        email = str(request.POST.get('email'))
+        password = str(request.POST.get('password'))
+        user_id = user.is_valid_login(email, password)
+        if user_id:
+            response.set_signed_cookie(key="uID", value=utils.make_cookie(user_id), salt=production.uID_salt)
+            return True
+    return False
 
-        if is_valid_user(email, password):
-            return redirect('/home')
-        else:
-            return False
-
-# Signup page
+# API to create new user
 def signup(request):
-    if request.method == "GET":
-        return render(request, 'signup.html')
-    elif request.method == "POST":
+    if request.method == "POST":
         email = request.POST.get('email')
         password = request.POST.get('password')
+        if is_valid_email(email):
+            user_id = user.insert_user(email, password)
+            if user_id:
+                response.set_signed_cookie(key="uID", value=utils.make_cookie(user_id), salt=production.uID_salt)
+                return True
+    return False
 
-        valid_email = is_valid_email(email)
-        
-        if valid_email:
-            status = user.insert_user(email, password)
-            if status:
-                return redirect('/home')
-            else:
-                return render(request, '505.html')
-        else:
-            return False
-    else:
-        print "No such page for method", request.method
-        return render(request, '404.html')
-
-# API to create meetup, called by react
+# API to create meetup
 def create_meetup(request):
     if request.method == "POST":
         title = request.POST.get('title')
@@ -62,7 +57,6 @@ def create_meetup(request):
         people = request.POST.get('people')
 
         created_meetup = meetup.insert_meetup(title, description, t_time, location, maxim_cap, people)
-        return redirect('\home')
-    else:
-        print "No such page for method", request.method
-        return render(request, '404.html')
+        if created_meetup:
+            return True
+    return False
