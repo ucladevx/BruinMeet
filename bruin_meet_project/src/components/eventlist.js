@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import _ from 'lodash';
 import EventCard from './eventcard.js';
 import '../styles/events.css';
@@ -15,11 +14,5 @@ class EventList extends Component {
     )
   }
 }
-
-EventList.propTypes = {
-  eventNumber: PropTypes.number
-};
-
-
 
 export default EventList;
