@@ -92,13 +92,26 @@ def edit_meetup(request):
         hash_seed = str(title) + str(description) + str(t_time) + str(location) + str(maxim_cap) + str(user_id)
         new_meetup_id = utils.create_hash(hash_seed)
         
-        is_edit_successful = meetup.edit_meetup(meetup_id, new_meetup_id, title, description, t_time, location, maxim_cap, people, user_id, num_stars)
-
-        if is_edit_successful:
+        if meetup.edit_meetup(meetup_id, new_meetup_id, title, description, t_time, location, maxim_cap, people, user_id, num_stars)
             return True
-        else:
-            return False
-        # avoided single return statement to prevent returning
-        # data that edit_meetup() may accidentally return
         
+    return False
+
+def delete_meetup(request):
+    if request.method == "POST":
+        cookie = request.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
+        if not cookie:
+            return False
+        cookie_uID = utils.check_cookie(cookie)
+        if not cookie_uID:
+            return False
+        
+        meetup_id = request.POST.get('meetup_id')
+        user_id = meetup.get_userID_from_meetupID(meetup_id)
+        if user_id != cookie_uID:
+            return False # User trying to modify another's meetup
+
+        if meetup.delete_meetup(meetup_id):
+            return True
+
     return False

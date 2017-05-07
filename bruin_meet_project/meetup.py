@@ -69,6 +69,24 @@ def edit_meetup(meetup_id, new_meetup_id, old_title, new_title, description, t_t
     print "Successfully edited meetup"
     return True
 
+def delete_meetup(meetup_id):
+    conn = None
+    try:
+        conn = psycopg2.connect(conn_str)
+        cur = conn.cursor()
+        cur.execute('delete from main.meetups where id=\'%s\';' % (meetup_id,))
+        rows = cur.fetchall()
+        cur.close()
+    except psycopg2.DatabaseError as error:
+        print(error)
+        print "Error while deleting meetup..."
+        return False
+    finally:
+        if conn is not None:
+            conn.close()
+    return True
+
+
 def get_meetups(sql_command):
     conn = None
     try:
@@ -105,3 +123,4 @@ def get_user_meetups(user_id):
 def get_nonuser_meetups(user_id):
     print "\nGetting all nonuser meetups..."
     return get_meetups('select * from main.meetups where user_id!=' + str(user_id) + ';')
+
