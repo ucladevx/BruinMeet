@@ -74,8 +74,8 @@ def delete_meetup(meetup_id):
     try:
         conn = psycopg2.connect(conn_str)
         cur = conn.cursor()
-        cur.execute('delete from main.meetups where id=\'%s\';' % (meetup_id,))
-        rows = cur.fetchall()
+        cur.execute('delete from main.meetups where id=\'' + str(meetup_id) + '\';')
+        conn.commit()
         cur.close()
     except psycopg2.DatabaseError as error:
         print(error)
