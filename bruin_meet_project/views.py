@@ -7,7 +7,7 @@ import user, meetup, production
 # Landing page
 def welcome(request):
     if request.method == "GET":
-        cookie = response.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
+        cookie = request.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
         if cookie:
             cookie_uID = utils.check_cookie(cookie)
             if cookie_uID:
@@ -30,7 +30,7 @@ def login(request):
         password = str(request.POST.get('password'))
         user_id = user.is_valid_login(email, password)
         if user_id:
-            response.set_signed_cookie(key="uID", value=utils.make_cookie(user_id), salt=production.uID_salt)
+            HttpResponse.set_signed_cookie(key="uID", value=utils.make_cookie(user_id), salt=production.uID_salt)
             return True
     return False
 
