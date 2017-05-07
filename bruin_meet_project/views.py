@@ -56,7 +56,11 @@ def create_meetup(request):
         maxim_cap = request.POST.get('maxim_cap')
         people = request.POST.get('people')
 
-        created_meetup = meetup.insert_meetup(title, description, t_time, location, maxim_cap, people)
-        if created_meetup:
-            return True
+        cookie = request.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
+        if cookie:
+            cookie_uID = utils.check_cookie(cookie)
+            if cookie_uID:
+                created_meetup = meetup.insert_meetup(title, description, t_time, location, maxim_cap, people, cookie_uID)
+                if created_meetup:
+                    return True
     return False

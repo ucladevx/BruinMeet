@@ -20,7 +20,6 @@ import bruin_meet_project.views
 admin.autodiscover()
 
 urlpatterns = [
-    #url(r'^$', hello.views.index, name='index'),
     url(r'^$', bruin_meet_project.views.welcome, name='welcome'),
     url(r'^admin/', admin.site.urls)
 ]

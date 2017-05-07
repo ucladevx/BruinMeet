@@ -4,7 +4,7 @@ sql_mu = 'select * from main.users'
 sql_mu_in = 'insert into main.users (email, password, id) values (%s, %s, %s);'
 
 sql_mm = 'select * from main.meetups'
-sql_mm_in = 'insert into main.meetups (id, title, description, t_time, location, maxim_cap, people) values (%s, %s, %s, %s, %s, %s, %s);'
+sql_mm_in = 'insert into main.meetups (id, title, description, t_time, location, maxim_cap, people, user_id) values (%s, %s, %s, %s, %s, %s, %s, %s);'
 
 # salt for generating cookies
 id_key = "INSERT_YOUR_OWN_RANDOM_KEY_HERE"
