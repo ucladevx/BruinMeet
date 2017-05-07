@@ -21,5 +21,10 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^$', bruin_meet_project.views.welcome, name='welcome'),
+    url(r'^login/', bruin_meet_project.views.login, name='login'),
+    url(r'^signup/', bruin_meet_project.views.signup, name='signup'),
+    url(r'^create_meetup/', bruin_meet_project.views.create_meetup, name='create_meetup'),
+    url(r'^edit_meetup/', bruin_meet_project.views.edit_meetup, name='edit_meetup'),
+    url(r'^delete_meetup/', bruin_meet_project.views.delete_meetup, name='delete_meetup'),
     url(r'^admin/', admin.site.urls)
 ]
