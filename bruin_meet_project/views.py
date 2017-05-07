@@ -64,3 +64,41 @@ def create_meetup(request):
                 if created_meetup:
                     return True
     return False
+
+def edit_meetup(request):
+    if request.method == "POST":
+        cookie = request.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
+        if not cookie:
+            return False
+        cookie_uID = utils.check_cookie(cookie)
+        if not cookie_uID:
+            return False
+        
+        meetup_id = request.POST.get('meetup_id')
+        # if the meetup that has meetup_id not have user id = cookieUID then return false
+        # get meetup for meetup_id
+        user_id = meetup.get_userID_from_meetupID(meetup_id)
+        if user_id != cookie_uID:
+            return False # User trying to modify another's meetup
+        
+        title = request.POST.get('new_title')
+        description = request.POST.get('new_description')
+        t_time = request.POST.get('new_timestamp')
+        location = request.POST.get('new_location')
+        maxim_cap = request.POST.get('new_maxim_cap')
+        people = request.POST.get('new_people')
+        num_stars = request.POST.get('num_stars')
+        
+        hash_seed = str(title) + str(description) + str(t_time) + str(location) + str(maxim_cap) + str(user_id)
+        new_meetup_id = utils.create_hash(hash_seed)
+        
+        is_edit_successful = meetup.edit_meetup(meetup_id, new_meetup_id, title, description, t_time, location, maxim_cap, people, user_id, num_stars)
+
+        if is_edit_successful:
+            return True
+        else:
+            return False
+        # avoided single return statement to prevent returning
+        # data that edit_meetup() may accidentally return
+        
+    return False

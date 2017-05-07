@@ -42,6 +42,33 @@ def insert_meetup(title, description, t_time, location, maxim_cap, people, user_
     print "Successfully created meetup"
     return True
 
+def edit_meetup(meetup_id, new_meetup_id, old_title, new_title, description, t_time, location, maxim_cap, people, user_id, num_stars):
+    print "\nEditing meetup", old_title, "to", new_title
+
+    info = [new_meetup_id, new_title, description, t_time, location, maxim_cap, people, user_id, num_stars]
+
+    if not is_valid_meetup_info(info):
+        print "Invalid meetup info for:", old_title, "(edit_meetup)"
+        return False
+
+    conn = None
+    success = True
+    
+    try:
+        conn = psycopg2.connect(conn_str)
+        cur = conn.cursor()
+        cur.execute('update main.meetups set id=\'%s\', title=\'%s\', description=\'%s\', t_time=\'%s\', location=\'%s\', maxim_cap=\'%s\', people=\'%s\', num_stars=\'%s\' where id=\'%s\';' % (new_meetup_id, new_title, description, t_time, location, maxim_cap, people, num_stars, meetup_id))
+        conn.commit()
+        cur.close()
+    except psycopg2.DatabaseError as error:
+        print(error)
+        return False
+    finally:
+        if conn is not None:
+            conn.close()
+    print "Successfully edited meetup"
+    return True
+
 def get_meetups(sql_command):
     conn = None
     try:
