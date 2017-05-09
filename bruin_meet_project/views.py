@@ -92,7 +92,7 @@ def edit_meetup(request):
         hash_seed = str(title) + str(description) + str(t_time) + str(location) + str(maxim_cap) + str(user_id)
         new_meetup_id = utils.create_hash(hash_seed)
         
-        if meetup.edit_meetup(meetup_id, new_meetup_id, title, description, t_time, location, maxim_cap, people, user_id, num_stars)
+        if meetup.edit_meetup(meetup_id, new_meetup_id, title, description, t_time, location, maxim_cap, people, user_id, num_stars):
             return True
         
     return False
