@@ -66,3 +66,5 @@ typings/
 bruin_meet_project/settings_secret.py
 bruin_meet_project/production.py
 
+# webpack stats
+webpack-stats.json
