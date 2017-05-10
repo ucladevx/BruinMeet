@@ -12,7 +12,7 @@ class API {
   }
 
   async login(info) {
-      const res = await this._client.post('/login', { email: info.email, password: info.password });
+      const res = await this._client.post('/login/', { email: info.email, password: info.password });
       if (res.problem) {
         console.error(res);
         throw new Error();
