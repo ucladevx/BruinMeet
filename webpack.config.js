@@ -7,6 +7,7 @@ module.exports = {
   // the base directory (abs path) for resolving the entry option
   context: __dirname,
   entry: [
+      'babel-polyfill',
       'webpack-dev-server/client?http://localhost:3000',
       'webpack/hot/only-dev-server',
       './bruin_meet_project/src/index.js',
