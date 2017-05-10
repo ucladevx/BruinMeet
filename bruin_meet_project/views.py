@@ -31,8 +31,10 @@ def login(request):
         user_id = user.is_valid_login(email, password)
         if user_id:
             HttpResponse.set_signed_cookie(key="uID", value=utils.make_cookie(user_id), salt=production.uID_salt)
-            return True
-    return False
+            return HttpResponse('yay')
+    hr = HttpResponse()
+    hr.status_code = 403;
+    return hr
 
 # API to create new user
 def signup(request):

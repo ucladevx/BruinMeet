@@ -61,7 +61,7 @@ def is_valid_email(email):
     return True
 
 def is_valid_login(email, password):
-    print "Validating", email, "with", password, "... (utils)"
+    print "Validating", email, "... (utils)"
     conn = None
     rows = None
     try:
