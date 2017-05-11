@@ -3,6 +3,7 @@ import Header from './components/header.js';
 import EventList from './components/eventlist.js';
 import Login from './components/login.js';
 import './styles/App.css';
+import globalStyles from './styles/global.css';
 
 class App extends Component {
   constructor(props) {
