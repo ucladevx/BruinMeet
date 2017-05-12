@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import heartIcon from '../img/ic-heart.png';
 import peopleIcon from '../img/ic-people.png';
-import messengerIcon from '../img/messenger.png';
 import host from '../img/host.png';
 import '../styles/detail.css'
 
