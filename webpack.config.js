@@ -49,6 +49,10 @@ module.exports = {
         test: /\.png$/,
         loader: "url-loader",
         query: { mimetype: "image/png" }
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file-loader?name=assets/fonts/[name].[ext]'
       }
     ]
   },
