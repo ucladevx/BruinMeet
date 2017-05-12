@@ -14,11 +14,15 @@ class Login extends Component {
 		};
 	}
 
-  async handleLogin(e) {
+  async handleSubmit(e) {
     e.preventDefault();
-    const res = await api.login({ email: this.state.email, password: this.state.password });
-    if (!res.ok) {
-      this.setState({ showError: true })
+    if (!this.props.showSignup) {
+      const res = await api.login({ email: this.state.email, password: this.state.password });
+      if (!res.ok) {
+        this.setState({ showError: true })
+      }
+    } else {
+      const res = await api.signup({ email: this.state.email, password: this.state.password });
     }
   }
 
@@ -28,16 +32,7 @@ class Login extends Component {
         <div className='container' onClick={(e) => { e.stopPropagation(); }}>
           <h2>Bruin Meet</h2>
           <h3>Get Started</h3>
-        <form onSubmit={(e)=> this.handleLogin(e)}>
-          <label>
-            <input
-              className="inputStyles"
-              type=""
-              placeholder="Name"
-              value={this.state.name}
-              onChange={(e)=> this.setState({ name: e.target.value })}
-            />
-          </label>
+        <form onSubmit={(e)=> this.handleSubmit(e)}>
           <label>
             <input
               className="inputStyles"
@@ -56,10 +51,11 @@ class Login extends Component {
               onChange={(e)=> this.setState({ password: e.target.value })}
             />
           </label>
+          <p className="label-signup" onClick={this.props.toggleSignup}>Not yet registered?</p>
           {this.state.showError
             ? <p className='error'>Sorry, there is no such combination of email and password.</p>
             : null}
-          <input className="inputStyles login" type="submit" value="Sign Up!" />
+          <input className="inputStyles login" type="submit" value={this.props.showSignup ? "Sign up!" : "Log In"} />
           </form>
         </div>
       </div>

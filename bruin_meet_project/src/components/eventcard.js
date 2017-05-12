@@ -10,7 +10,7 @@ class EventCard extends Component {
         <div className='event-side' />
         <p className='event-title'>Silicon Valley Watch Party</p>
         <p className='event-location'>at Fireside Lounge</p>
-        <p className='event-time'>25 May, 4:30 PMM</p>
+        <p className='event-time'>25 May, 4:30 PM</p>
         <div className='event-footer'>
           <div className='event-tags'>
             <Tag />

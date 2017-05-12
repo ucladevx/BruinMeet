@@ -53,7 +53,6 @@ form
     font-family: inherit;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 0.5em;
 }
 
 .login:hover
@@ -112,6 +111,18 @@ h3{
   align-items: center;
 }
 
+.label-signup {
+  justify-content: flex-end;
+  width: 100%;
+  color: #999;
+}
+
+.label-signup:hover {
+  color: #1F2421;
+}
+
 .error {
+  margin-top: 0px;
+  margin-bottom: 10px;
   color: red;
 }
