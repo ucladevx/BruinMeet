@@ -1,6 +1,6 @@
 import {create} from 'apisauce';
-const BASE_URL = 'http://ec2-54-193-66-196.us-west-1.compute.amazonaws.com';
-
+//const BASE_URL = 'http://ec2-54-193-66-196.us-west-1.compute.amazonaws.com';
+const BASE_URL = 'http://localhost:8000';
 class API {
   constructor() {
     var getCookie = function (name) {
@@ -61,6 +61,24 @@ class API {
       else
         return 'Success';
     });
+  }
+
+  create_meetup(info) {
+    var body = 'title=' + encodeURIComponent(info.title) + '&description=' + 
+      encodeURIComponent(info.description) + '&timestamp=' +
+      encodeURIComponent(info.timestamp) + '&location=' +
+      encodeURIComponent(info.location) + '&maxim_cap=' +
+      encodeURIComponent(info.maxim_cap) + '&people=' +
+      encodeURIComponent(info.people);
+    const res = this._client.post('/create_meetup/', body, {
+      headers: this._defaultHeaders
+    });
+
+    if (res.problem) {
+      console.error(res);
+    }
+
+    return res;
   }
 }
 
