@@ -32,17 +32,23 @@ class API {
     };
   }
 
-  async login(info) {
+  login(info) {
     var body = 'email=' + encodeURIComponent(info.email) + '&password=' + encodeURIComponent(info.password);
-    const res = await this._client.post('/login/', body, {
+    const res = this._client.post('/login/', body, {
       headers: this._defaultHeaders
     });
 
     if (res.problem) {
       console.error(res);
+      return 'Network Failure';
     }
 
-    return res;
+    return res.then(function (response) {
+      if (response.data == 'True')
+        return true;
+      else
+        return false;
+    });
   }
 
   signup(info) {
@@ -53,6 +59,7 @@ class API {
 
     if (res.problem) {
       console.error(res);
+      return 'Network Failure';
     }
 
     return res.then(function (response) {

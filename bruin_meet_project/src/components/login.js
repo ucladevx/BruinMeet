@@ -18,8 +18,10 @@ class Login extends Component {
     e.preventDefault();
     if (!this.props.showSignup) {
       const res = await api.login({ email: this.state.email, password: this.state.password });
-      if (!res.ok) {
+      if (res == false) {
         this.setState({ showError: true })
+      } else {
+        this.props.toggleLoginModal();
       }
     } else {
       const res = await api.signup({ email: this.state.email, password: this.state.password });
