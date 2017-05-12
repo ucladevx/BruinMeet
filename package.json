@@ -41,7 +41,10 @@
   "dependencies": {
     "apisauce": "^0.12.0",
     "lodash": "^4.17.4",
+    "react-redux": "^5.0.4",
     "react-rotating-text": "^1.2.0",
-    "react-typist": "^1.1.0"
+    "react-typist": "^1.1.0",
+    "redux": "^3.6.0",
+    "redux-devtools-extension": "^2.13.2"
   }
 }
