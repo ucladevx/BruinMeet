@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'ec2-54-193-66-196.us-west-1.compute.amazonaws.com']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -114,11 +114,11 @@ WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': 'bundles/',
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
-        }
+    },
 }
 
-if not DEBUG:
+if DEBUG:
     WEBPACK_LOADER['DEFAULT'].update({
         'BUNDLE_DIR_NAME': 'dist/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json'
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json')
     })
