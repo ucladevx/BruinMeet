@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import api from '../config/api.js';
 import '../styles/login.css';
+import _ from 'lodash';
 
 class Login extends Component {
 	constructor(props) {
@@ -24,7 +25,7 @@ class Login extends Component {
   render() {
     return (
       <div className='background' onClick={this.props.toggleLoginModal}>
-        <div className='container'>
+        <div className='container' onClick={(e) => { e.stopPropagation(); }}>
           <h2>Bruin Meet</h2>
           <h3>Get Started</h3>
         <form onSubmit={(e)=> this.handleLogin(e)}>
