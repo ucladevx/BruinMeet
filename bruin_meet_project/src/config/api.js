@@ -39,7 +39,6 @@ class API {
 
     if (res.problem) {
       console.error(res);
-      throw new Error();
     }
 
     return res;
