@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.template import Context, Template, loader
 
@@ -7,6 +7,11 @@ import user, meetup, production, utils
 # Landing page
 def welcome(request):
     if request.method == "GET":
+        return render(request, 'index.html')
+
+# API to get all meetups
+def get_meetups(request):
+    if request.method == "POST":
         cookie = request.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
         if cookie:
             cookie_uID = utils.check_cookie(cookie)
@@ -15,16 +20,15 @@ def welcome(request):
                 nonuser_meetups = meetup.get_nonuser_meetups(cookie_uID)
                 print "user_meetups:", user_meetups
                 print "nonuser_meetups:", nonuser_meetups
-                return render(request, 'index.html',
-                              {'validUser': 'True',
-                               'user_meetups': user_meetups,
-                               'nonuser_meetups': nonuser_meetups})
+                response = JsonResponse({'valid_user': 'True', 'user_meetups': user_meetups, 'nonuser_meetups':nonuser_meetups})
+                return response
         nonuser_meetups = meetup.get_all_meetups()
         print "nonuser_meetups", nonuser_meetups
-        return render(request, 'index.html',
-                      {'validUser': 'False',
-                       'nonuser_meetups': nonuser_meetups})
-    return False
+        response = JsonResponse({'valid_user': 'False', 'user_meetups': user_meetups, 'nonuser_meetups': nonuser_meetups})
+        return response
+    response = HttpResponse()
+    response.status_code = 403
+    return response
 
 # API to authenticate login info
 def login(request):
@@ -33,9 +37,11 @@ def login(request):
         password = str(request.POST.get('password'))
         user_id = user.is_valid_login(email, password)
         if user_id:
-            response = HttpResponse('yay')
+            response = HttpResponse('True')
             response.set_signed_cookie(key="uID", value=utils.make_cookie(user_id), salt=production.uID_salt)
             return response
+        response = HttpResponse('False')
+        return response
     response = HttpResponse()
     response.status_code = 403
     return response
@@ -57,10 +63,11 @@ def signup(request):
         else:
             response = HttpResponse('{\"Result\":\"Failure\",\"Reason\":\"Invalid Email\"}')
             return response
-    response = HttpResponse('{\"Result\":\"Failure\",\"Reason\":\"Not a POST request\"}')
+    response = HttpResponse()
+    response.status_code = 403
     return response
 
-# API to create meetup
+# API to create meetupx
 def create_meetup(request):
     if request.method == "POST":
         title = request.POST.get('title')
@@ -76,8 +83,10 @@ def create_meetup(request):
             if cookie_uID:
                 created_meetup = meetup.insert_meetup(title, description, t_time, location, maxim_cap, people, cookie_uID)
                 if created_meetup:
-                    return True
-    return False
+                    response = HttpResponse('True')
+                    return response
+        response = HttpResponse('False')
+        return response
 
 def edit_meetup(request):
     if request.method == "POST":
@@ -107,10 +116,15 @@ def edit_meetup(request):
         new_meetup_id = utils.create_hash(hash_seed)
         
         if meetup.edit_meetup(meetup_id, new_meetup_id, title, description, t_time, location, maxim_cap, people, user_id, num_stars):
-            return True
-        
-    return False
-
+            response = HttpResponse('True')
+            return response
+        else:
+            response = HttpResponse('False')
+            return response
+    response = HttpResponse()
+    response.status_code = 403
+    return response
+            
 def delete_meetup(request):
     if request.method == "POST":
         cookie = request.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
