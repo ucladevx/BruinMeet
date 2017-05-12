@@ -1,36 +1,91 @@
 .home-header {
-  padding-left: 1em;
-  padding-right: 1em;
-  flex-direction: row;
-  justify-content: space-between;
-  display: flex;
-  background-color: white;
+    padding-left: 1em;
+    padding-right: 1em;
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+    background-color: white;
+}
+
+.react-rotating-text-cursor {
+  animation: blinking-cursor 0.8s cubic-bezier(0.68, 0.01, 0.01, 0.99) 0s infinite;
+}
+
+@keyframes blinking-cursor {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.textbox
+{
+    opacity: 0.75;
 }
 
 .search-header {
-  display: flex;
-  justify-content: center;
-  background-color: #00A5E5;
+    padding-left: 1em;
+    padding-right: 1em;
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+    background-color: #1F2421;
+    opacity: .8;
 }
-
-.color-blue {
-  color: #00A5E5 !important;
+.txt-title {
+    font-size: 3em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    color: black;
+    font-weight: 600;
 }
-
+.color-black {
+    color: #1F2421 !important;
+}
 .txt-header {
-  font-size: 2em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  color: white;
-  font-weight: 400;
+    font-size: 2em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    color: white;
+    display: inline-block;
+    font-weight: 300;
+    overflow: hidden;
+    float:left;
+   white-space: nowrap;
 }
 
+.txt-header .opac{
+    opacity: 0.6;
+    float: left;
+}
 .btn-header {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-self: flex-end;
+    font-size: 1em;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    color: white;
+}
+.ic-circular {
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    color: white;
 }
 
-.ic-circular {
-  width: 40px;
-  height: 40px;
+input[type="text"]
+{
+    background: transparent;
+    border: none;
+    float: left;
+    margin: 0;
+   padding: 0;
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RotatingText from 'react-rotating-text';
 import addIcon from '../img/ic-plus.png';
 import menuIcon from '../img/ic-menu.png';
 import '../styles/header.css'
@@ -6,24 +7,14 @@ import '../styles/header.css'
 class Header extends Component {
     render() {
       return (
-        <div>
-          <div className="home-header">
-            <a className="btn-header">
-              <img src={menuIcon} className="ic-circular" />
-            </a>
-            <p className="txt-header color-blue">Bruin Meet</p>
-            {this.props.loggedIn
-              ? <a className="btn-header" onClick={this.props.onAdd}>
-                <img src={addIcon} className="ic-circular" />
-              </a>
-              : <a className="btn-header" onClick={this.props.onLogin}>
-                <p className="color-blue">Log In</p>
-              </a>}
-          </div>
           <div className="search-header">
-            <p className="txt-header">I am looking for a study partner</p>
+            <img src={menuIcon} className="ic-circular" />
+            <p className="txt-header">I am looking <RotatingText className = "textbox" items={['for a study partner', 'to form a band', 'to Netflix/Chill, [insert more stuff]']} /></p>
+            {/*add on click to convert to search bar*/}
+            {this.props.loggedIn
+              ? <a className="btn-header" onClick={this.props.onAdd}> <img src={addIcon} className="ic-circular" /></a>
+              : <a className="btn-header" onClick={this.props.onLogin}><p className="color-white">Log In</p></a>}
           </div>
-        </div>
       )
     }
 }

@@ -1,6 +1,6 @@
 import {create} from 'apisauce';
-const BASE_URL = 'http://ec2-54-193-66-196.us-west-1.compute.amazonaws.com';
-
+//const BASE_URL = 'http://ec2-54-193-66-196.us-west-1.compute.amazonaws.com';
+const BASE_URL = 'http://localhost:8000';
 class API {
   constructor() {
     var getCookie = function (name) {
@@ -25,21 +25,57 @@ class API {
       headers: {
         'X-CSRFToken': this._csrftoken
       }
-    })
+    });
+    this._defaultHeaders = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
   }
 
   async login(info) {
     var body = 'email=' + encodeURIComponent(info.email) + '&password=' + encodeURIComponent(info.password);
     const res = await this._client.post('/login/', body, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
+      headers: this._defaultHeaders
     });
 
     if (res.problem) {
       console.error(res);
-      throw new Error();
+    }
+
+    return res;
+  }
+
+  signup(info) {
+    var body = 'email=' + encodeURIComponent(info.email) + '&password=' + encodeURIComponent(info.password);
+    const res = this._client.post('/signup/', body, {
+      headers: this._defaultHeaders
+    });
+
+    if (res.problem) {
+      console.error(res);
+    }
+
+    return res.then(function (response) {
+      if (response.Result == 'Failure')
+        return response.Reason;
+      else
+        return 'Success';
+    });
+  }
+
+  create_meetup(info) {
+    var body = 'title=' + encodeURIComponent(info.title) + '&description=' + 
+      encodeURIComponent(info.description) + '&timestamp=' +
+      encodeURIComponent(info.timestamp) + '&location=' +
+      encodeURIComponent(info.location) + '&maxim_cap=' +
+      encodeURIComponent(info.maxim_cap) + '&people=' +
+      encodeURIComponent(info.people);
+    const res = this._client.post('/create_meetup/', body, {
+      headers: this._defaultHeaders
+    });
+
+    if (res.problem) {
+      console.error(res);
     }
 
     return res;

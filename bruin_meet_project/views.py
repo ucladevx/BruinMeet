@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import Context, Template, loader
 
-import user, meetup, production
+import user, meetup, production, utils
 
 # Landing page
 def welcome(request):
@@ -30,23 +30,32 @@ def login(request):
         password = str(request.POST.get('password'))
         user_id = user.is_valid_login(email, password)
         if user_id:
-            HttpResponse.set_signed_cookie(key="uID", value=utils.make_cookie(user_id), salt=production.uID_salt)
-            return HttpResponse('yay')
-    hr = HttpResponse()
-    hr.status_code = 403;
-    return hr
+            response = HttpResponse('yay')
+            response.set_signed_cookie(key="uID", value=utils.make_cookie(user_id), salt=production.uID_salt)
+            return response
+    response = HttpResponse()
+    response.status_code = 403
+    return response
 
 # API to create new user
 def signup(request):
     if request.method == "POST":
         email = request.POST.get('email')
         password = request.POST.get('password')
-        if is_valid_email(email):
+        if user.is_valid_email(email):
             user_id = user.insert_user(email, password)
             if user_id:
+                response = HttpResponse('{\"Result\":\"Success\"}')
                 response.set_signed_cookie(key="uID", value=utils.make_cookie(user_id), salt=production.uID_salt)
-                return True
-    return False
+                return response
+            else:
+                response = HttpResponse('{\"Result\":\"Failure\",\"Reason\":\"Email Already Used\"}')
+                return response
+        else:
+            response = HttpResponse('{\"Result\":\"Failure\",\"Reason\":\"Invalid Email\"}')
+            return response
+    response = HttpResponse('{\"Result\":\"Failure\",\"Reason\":\"Not a POST request\"}')
+    return response
 
 # API to create meetup
 def create_meetup(request):
