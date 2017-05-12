@@ -25,16 +25,17 @@ class API {
       headers: {
         'X-CSRFToken': this._csrftoken
       }
-    })
+    });
+    this._defaultHeaders = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
   }
 
   async login(info) {
     var body = 'email=' + encodeURIComponent(info.email) + '&password=' + encodeURIComponent(info.password);
     const res = await this._client.post('/login/', body, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
+      headers: this._defaultHeaders
     });
 
     if (res.problem) {
@@ -42,6 +43,24 @@ class API {
     }
 
     return res;
+  }
+
+  signup(info) {
+    var body = 'email=' + encodeURIComponent(info.email) + '&password=' + encodeURIComponent(info.password);
+    const res = this._client.post('/signup/', body, {
+      headers: this._defaultHeaders
+    });
+
+    if (res.problem) {
+      console.error(res);
+    }
+
+    return res.then(function (response) {
+      if (response.Result == 'Failure')
+        return response.Reason;
+      else
+        return 'Success';
+    });
   }
 }
 
