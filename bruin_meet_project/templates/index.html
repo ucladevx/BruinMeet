@@ -1,3 +1,6 @@
 {% load render_bundle from webpack_loader %}
+<div id="validUser" style="visibility:hidden; display:none">{{ validUser }}</div>
+<div id="user_meetups" style="visibility:hidden; display:none">{{ user_meetups }}</div>
+<div id="nonuser_meetups" style="visibility:hidden; display:none">{{ nonuser_meetups }}</div>
 <div id="root"></div>
 {% render_bundle 'main' %}

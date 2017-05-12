@@ -13,11 +13,14 @@ def welcome(request):
             if cookie_uID:
                 user_meetups = meetup.get_user_meetups(cookie_uID)
                 nonuser_meetups = meetup.get_nonuser_meetups(cookie_uID)
+                print "user_meetups:", user_meetups
+                print "nonuser_meetups:", nonuser_meetups
                 return render(request, 'index.html',
                               {'validUser': 'True',
                                'user_meetups': user_meetups,
                                'nonuser_meetups': nonuser_meetups})
-        nonuser_meetups = meetup.get_all_meetups()    
+        nonuser_meetups = meetup.get_all_meetups()
+        print "nonuser_meetups", nonuser_meetups
         return render(request, 'index.html',
                       {'validUser': 'False',
                        'nonuser_meetups': nonuser_meetups})

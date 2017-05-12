@@ -109,7 +109,6 @@ def get_meetups(sql_command):
         for item in row:
             info.append(item)
         meetups.append(info)
-        
     return meetups
     
 def get_all_meetups():

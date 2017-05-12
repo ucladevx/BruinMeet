@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -117,7 +117,7 @@ WEBPACK_LOADER = {
     },
 }
 
-if not DEBUG:
+if DEBUG:
     WEBPACK_LOADER['DEFAULT'].update({
         'BUNDLE_DIR_NAME': 'dist/',
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json')

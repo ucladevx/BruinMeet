@@ -19,7 +19,7 @@ module.exports = {
 
   plugins: [
     // tells webpack where to store data about our bundles
-    new BundleTracker({filename: './webpack-stats.json'}),
+    new BundleTracker({filename: './webpack-stats-prod.json'}),
     // removes a lot of debugging code in React
     new webpack.DefinePlugin({
       'process.env': {
