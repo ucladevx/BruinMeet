@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './header.js';
 import EventList from './eventlist.js';
 import Login from './login.js';
-import '../styles/Main.css';
+import '../styles/main.css';
 
 class Main extends Component {
   constructor(props) {
