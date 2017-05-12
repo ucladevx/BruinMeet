@@ -17,15 +17,24 @@
   }
   50% {
     opacity: 1;
+
   }
   100% {
     opacity: 0;
+
   }
 }
 
-.textbox
-{
+.opac{
     opacity: 0.75;
+    float: left;
+    position: fixed;
+    margin-left: 8px;
+}
+
+p{
+    display: flex;
+    float: left;
 }
 
 .search-header {
@@ -47,6 +56,10 @@
 .color-black {
     color: #1F2421 !important;
 }
+
+.message{
+   display: inline-block;
+}
 .txt-header {
     font-size: 2em;
     margin-top: 0.5em;
@@ -54,9 +67,23 @@
     color: white;
     display: inline-block;
     font-weight: 300;
+    margin-left: -12.75%;
     overflow: hidden;
-    float:left;
-   white-space: nowrap;
+    white-space: nowrap;
+    position: fixed;
+}
+
+.tagline{
+    font-size: 2em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    color: white;
+    display: inline-block;
+    font-weight: 300;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    opacity: 0.75;
 }
 
 .txt-header .opac{

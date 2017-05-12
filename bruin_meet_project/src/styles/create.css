@@ -1,0 +1,155 @@
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #949494;
+    font-size: 0.8em;
+    font-weight: 300;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #949494;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #949494;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #949494;
+}
+
+.form-create
+{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    align-self: center;
+    height: 10%;
+    display: block;
+    align-content: center;
+    width: 80%;
+}
+
+.done{
+    width: 25%;
+    
+}
+.inputStyles-create {
+    background-color: #D0D8DB;
+    width: 100%;
+    font-size: 1.5em;
+    align-content: center;
+    font-size: 18px;
+    line-height: 1.5em;
+    padding-left: 10px;
+    margin-bottom: 1em;
+    display: inline;
+    color: #000000;
+    background: #FFFFFF;
+    border: 1px solid #CCD1D9;
+    border-radius: 3px;
+}
+.login-create {
+    margin-right: 5px;
+    background: #949494;
+    border-radius: 6px;
+    float: left;
+    width: 12%;
+    text-align: center;
+    color: white;
+    display: block;
+    font-size: 1em;
+    font-weight: 300;
+    padding: 5px;
+    font-family: inherit;
+    margin-left: auto;
+    margin-right: 20px;
+    margin-top: 0.5em;
+}
+
+.social
+{
+    background: #E83F6F;
+}
+
+.active
+{
+    background: #32936F;
+}
+
+.food
+{
+    background: #FFBF00;
+}
+
+.study
+{
+    background: #2274A5;
+}
+
+.random
+{
+    background: #1F2421;
+}
+
+.social:hover
+{
+    background: #E83F6F;
+}
+
+.active:hover
+{
+    background: #32936F;
+}
+
+.food:hover
+{
+    background: #FFBF00;
+}
+
+.study:hover
+{
+    background: #2274A5;
+}
+
+.random:hover
+{
+    background: #1F2421;
+}
+
+.h2-create{
+    font-size: 40px;
+    margin-top: -500px;
+    margin-bottom: 3px;
+    justify-content: center;
+    font-weight: 400;
+    letter-spacing: -3px;
+    color: #1F2421;  
+    display: flex;
+    flex-direction: column;
+}
+.done{
+    margin-top: 40px;
+}
+.h3-create{
+    font-size: 23.3px;
+    align-self: center;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 0.4em;
+    font-weight: 300;
+    color: #1F2421;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   
+}
+/* Rect: */
+
+.create-container {
+    background: #FFFFFF;
+    box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.07);
+    border-radius: 6px;
+    width: 50%;
+    height: 700px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
