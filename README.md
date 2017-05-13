@@ -27,7 +27,7 @@ Download PostgreSQL for Mac: https://www.enterprisedb.com/downloads/postgres-pos
 
 9. In a second terminal, `npm i` and `npm start`
 
-10. In the original terminal, `python manage.py runserver 0.0.0.0:8000`
+10. In the original terminal, `python manage.py runserver 0.0.0.0:8080`
 
 Now go to "localhost:8080" in your browser
 
@@ -37,7 +37,7 @@ Assuming you have done steps 1-5
 
 6. Run `sudo su postgres` and `cd ~postgres/`
 
-7. Run `psql --host=bmdb.c6oxazuezpo9.us-west-1.rds.amazonaws.com --port=5432 --username=bruinmeet --password --dbname=postgres`
+7. Run `psql --host=bmdb.c6oxazuezpo9.us-west-1.rds.amazonaws.com --port=5432 --username=bruinmeet --password --dbname=bruin_meet`
 
 8. All the schemas in the database=postgres should have been created already. Modify accordingly.
 
