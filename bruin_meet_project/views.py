@@ -22,6 +22,7 @@ def get_meetups(request):
                 print "nonuser_meetups:", nonuser_meetups
                 response = JsonResponse({'valid_user': 'True', 'user_meetups': user_meetups, 'nonuser_meetups':nonuser_meetups})
                 return response
+        user_meetups = ""
         nonuser_meetups = meetup.get_all_meetups()
         print "nonuser_meetups", nonuser_meetups
         response = JsonResponse({'valid_user': 'False', 'user_meetups': user_meetups, 'nonuser_meetups': nonuser_meetups})
@@ -96,14 +97,14 @@ def edit_meetup(request):
         cookie_uID = utils.check_cookie(cookie)
         if not cookie_uID:
             return False
-        
+
         meetup_id = request.POST.get('meetup_id')
         # if the meetup that has meetup_id not have user id = cookieUID then return false
         # get meetup for meetup_id
         user_id = meetup.get_userID_from_meetupID(meetup_id)
         if user_id != cookie_uID:
             return False # User trying to modify another's meetup
-        
+
         title = request.POST.get('new_title')
         description = request.POST.get('new_description')
         t_time = request.POST.get('new_timestamp')
@@ -111,10 +112,10 @@ def edit_meetup(request):
         maxim_cap = request.POST.get('new_maxim_cap')
         people = request.POST.get('new_people')
         num_stars = request.POST.get('num_stars')
-        
+
         hash_seed = str(title) + str(description) + str(t_time) + str(location) + str(maxim_cap) + str(user_id)
         new_meetup_id = utils.create_hash(hash_seed)
-        
+
         if meetup.edit_meetup(meetup_id, new_meetup_id, title, description, t_time, location, maxim_cap, people, user_id, num_stars):
             response = HttpResponse('True')
             return response
@@ -124,7 +125,7 @@ def edit_meetup(request):
     response = HttpResponse()
     response.status_code = 403
     return response
-            
+
 def delete_meetup(request):
     if request.method == "POST":
         cookie = request.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
@@ -133,7 +134,7 @@ def delete_meetup(request):
         cookie_uID = utils.check_cookie(cookie)
         if not cookie_uID:
             return False
-        
+
         meetup_id = request.POST.get('meetup_id')
         user_id = meetup.get_userID_from_meetupID(meetup_id)
         if user_id != cookie_uID:
