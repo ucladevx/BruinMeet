@@ -1,12 +1,11 @@
 .event-list {
     display: flex;
     flex-direction: row;
-    flex: 1;
     flex-wrap: wrap;
     justify-content: center;
 }
 .card {
-    font-family: 'HelveticaNeue';
+    /*font-family: 'HelveticaNeue';*/
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -25,6 +24,23 @@
     left: 0;
     background-color: #F00A6B;
 }
+
+.sport {
+  background-color: #32936F;
+}
+
+.random {
+  background-color: black;
+}
+
+.study {
+  background-color: #2274A5;
+}
+
+.food {
+  background-color: #FFBF00;
+}
+
 .title {
     font-weight: 200;
     margin: 0;
@@ -32,7 +48,7 @@
     margin-left: 10px;
     margin-top: 15px;
     margin-right: 50px;
-    font-family: HelveticaNeue;
+    /*font-family: HelveticaNeue;*/
     font-size: 36px;
     color: #3E3E3E;
     letter-spacing: -0.75px;
@@ -48,7 +64,7 @@ br {
     color: #BABABA;
     margin-bottom: 0;
     margin-top: 5px;
-    font-family: HelveticaNeue;
+    /*font-family: HelveticaNeue;*/
     font-size: 15px;
     color: #070707;
     letter-spacing: 0;
@@ -82,7 +98,7 @@ br {
     margin-bottom: 0;
     margin-left: 10px;
     margin-top: 10px;
-    font-family: HelveticaNeue;
+    /*font-family: HelveticaNeue;*/
     font-size: 20px;
     color: #070707;
     letter-spacing: 0;
@@ -98,7 +114,7 @@ br {
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-family: HelveticaNeue;
+    /*font-family: HelveticaNeue;*/
     font-size: 16px;
     margin-left: 10px;
     margin-top: 20px;

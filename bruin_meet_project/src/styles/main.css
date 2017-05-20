@@ -3,4 +3,13 @@
   background-color: #F8F8F8;
   font-family: 'Josefin Sans', 'HelveticaNeue-Light', sans-serif;
   font-weight: 300;
+  display: flex;
+  flex-direction: column;
+}
+
+.loader {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
 }

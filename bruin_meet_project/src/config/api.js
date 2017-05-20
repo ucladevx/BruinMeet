@@ -23,20 +23,16 @@ class API {
     this._client = create({
       baseURL: BASE_URL,
       headers: {
-        'X-CSRFToken': this._csrftoken
+        'X-CSRFToken': this._csrftoken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
     });
-    this._defaultHeaders = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded'
-    };
   }
 
   login(info) {
     var body = 'email=' + encodeURIComponent(info.email) + '&password=' + encodeURIComponent(info.password);
-    const res = this._client.post('/login/', body, {
-      headers: this._defaultHeaders
-    });
+    const res = this._client.post('/login/', body);
 
     if (res.problem) {
       console.error(res);
@@ -53,9 +49,7 @@ class API {
 
   signup(info) {
     var body = 'email=' + encodeURIComponent(info.email) + '&password=' + encodeURIComponent(info.password);
-    const res = this._client.post('/signup/', body, {
-      headers: this._defaultHeaders
-    });
+    const res = this._client.post('/signup/', body);
 
     if (res.problem) {
       console.error(res);
@@ -71,7 +65,7 @@ class API {
   }
 
   create_meetup(info) {
-    var body = 'title=' + encodeURIComponent(info.title) + '&description=' + 
+    var body = 'title=' + encodeURIComponent(info.title) + '&description=' +
       encodeURIComponent(info.description) + '&timestamp=' +
       encodeURIComponent(info.timestamp) + '&location=' +
       encodeURIComponent(info.location) + '&maxim_cap=' +
@@ -86,6 +80,16 @@ class API {
     }
 
     return res;
+  }
+
+  async getNonUserMeetups() {
+    const res = await this._client.post('/get_meetups/');
+
+    if (res.problem) {
+      console.error(res);
+    }
+    
+    return res.data.nonuser_meetups;
   }
 }
 

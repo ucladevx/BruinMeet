@@ -3,16 +3,12 @@ import _ from 'lodash';
 import EventCard from './eventcard.js';
 import '../styles/events.css';
 
-class EventList extends Component {
-  render() {
-    return (
-      <div className='event-list'>
-        {_.times(this.props.eventNumber, (i) => (
-          <EventCard key={i} />
-        ))}
-      </div>
-    )
-  }
-}
+const EventList = (props) => (
+  <div className='event-list'>
+  {props.events.map((event) => (
+    <EventCard key={event.id} event={event} onClick={() => props.onClickMeetup(event)} />
+  ))}
+  </div>
+)
 
 export default EventList;
