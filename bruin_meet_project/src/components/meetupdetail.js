@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import heartIcon from '../img/ic-heart.png';
 import peopleIcon from '../img/ic-people.png';
 import host from '../img/host.png';
-import '../styles/detail.css'
+import '../styles/meetupdetail.css'
 
 class Detail extends Component {
   render() {
     return (
-      <div className='background' onClick={this.props.onClose}>
+      <div className='background' onClick={this.props.resetCurrentMeetup}>
         <div className='card'>
           <div className={`side ${this.props.meetup.type}`} />
           <p className='title'>{this.props.meetup.title}</p>
@@ -22,11 +22,11 @@ class Detail extends Component {
               <input className="inputStyles login going" type="submit" value="Going!" />
               <p className= 'g2'>David and {this.props.meetup.people} others are going!</p>
           </div>
-          {//        <div className='event-footer'>
-  //          <div className='event-details'>
-  //            <div className='event-detail'>
+          {//        <div className='meetup-footer'>
+  //          <div className='meetup-details'>
+  //            <div className='meetup-detail'>
   //              <img src={heartIcon} className='ic-heart' />
-  //              <p className='event-detail-txt'>11/15</p>
+  //              <p className='meetup-detail-txt'>11/15</p>
   //            </div> </div>
           }
         </div>
@@ -38,7 +38,7 @@ class Detail extends Component {
 class Tag extends Component {
   render() {
     return (
-      <div className='event-tag'>
+      <div className='meetup-tag'>
         Netflix
       </div>
     )

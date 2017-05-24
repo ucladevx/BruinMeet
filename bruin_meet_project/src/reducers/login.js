@@ -1,6 +1,7 @@
 const initialState = {
   showModal: false,
   showSignup: false,
+  currentUser: null
 }
 
 const login = (state = initialState, action) => {
@@ -9,6 +10,8 @@ const login = (state = initialState, action) => {
       return { ...state, showModal: !state.showModal }
     case 'LOGIN_TOGGLE_SIGNUP':
       return { ...state, showSignup: !state.showSignup }
+    case 'LOGIN_USER':
+      return { ...state, currentUser: action.info }
     default:
       return state
   }

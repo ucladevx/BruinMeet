@@ -2,7 +2,7 @@ import React, {
     Component
 }
 from 'react';
-import '../styles/create.css';
+import '../styles/meetupcreate.css';
 import host from '../img/host.png';
 
 class Create extends Component {
@@ -18,7 +18,7 @@ class Create extends Component {
             tags: ['']
 		};
 	}
-    
+
     render() {
         return (
     <div className='formContainer'>
@@ -32,10 +32,10 @@ class Create extends Component {
     </div>
     <div className='desc'>
         <p contenteditable="true">Dinesh gets back to the ground while Richard continues to explore his new project. Gavin tries to come out of the new problem he has gotten himself into and interestingly the chemistry between Richard and Monica takes a new turn.
-        </p>  
+        </p>
     </div>
     <div className='tags'>
-         <p className='p-tag'>add; tags; like; this</p> 
+         <p className='p-tag'>add; tags; like; this</p>
          <p className='p-ppl'>15 ppl</p>
     </div>
     <div className='buttons'>
@@ -45,7 +45,7 @@ class Create extends Component {
             <input className="c-inputStyles food" type="" value="Food" onChange={(e)=> this.setState({ type: "food" })}/>
             <input className="c-inputStyles study" type="" value="Study" onChange={(e)=> this.setState({ type: "study" })}/>
             <input className="c-inputStyles random" type="" value="Random" onChange={(e)=> this.setState({ type: "random" })}/>
-        </label>     
+        </label>
     </div>
     <div className='foot'>
         <input className="inputStyles cre" type="submit" value="Create Meetup" />
@@ -58,6 +58,6 @@ class Create extends Component {
     }
 }
 
-// POST: signup/email, 
+// POST: signup/email,
 
 export default Create;

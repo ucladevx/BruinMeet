@@ -14,6 +14,15 @@ export const requestMeetupsFail = () => ({
   type: 'MEETUPS_REQUEST_ERROR'
 })
 
+export const setCurrentMeetup = (id) => ({
+  type: 'MEETUPS_SET_CURRENT',
+  id
+})
+
+export const resetCurrentMeetup = () => ({
+  type: 'MEETUPS_RESET_CURRENT'
+})
+
 export const getMeetups = () =>
   async (dispatch) => {
     dispatch(requestMeetups());

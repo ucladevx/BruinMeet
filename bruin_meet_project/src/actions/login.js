@@ -5,3 +5,8 @@ export const toggleModal = () => ({
 export const toggleSignup = () => ({
   type: 'LOGIN_TOGGLE_SIGNUP'
 })
+
+export const userLogin = (info) => ({
+  type: 'LOGIN_USER',
+  info
+})

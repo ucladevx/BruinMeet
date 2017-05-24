@@ -8,10 +8,10 @@ const mapStateToProps = (state) => ({
   areMeetupsLoading: state.meetup.loading,
   isMeetupsError: state.meetup.networkError,
   meetups: state.meetup.result,
+  currentMeetupId: state.meetup.currentMeetupId
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleLoginModal: () => dispatch(actions.login.toggleModal()),
   getMeetups: () => dispatch(actions.meetup.getMeetups())
 })
 
