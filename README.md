@@ -41,4 +41,4 @@ Assuming you have done steps 1-5
 
 8. All the schemas in the database=postgres should have been created already. Modify accordingly.
 
-9. Follow steps 7-10 to run on the server at port 8080.
+9. Follow steps 7-10 to run on the server at port 8080, except on step 9 do `npm run build-production`
