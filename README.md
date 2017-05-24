@@ -25,7 +25,7 @@ Download PostgreSQL for Mac: https://www.enterprisedb.com/downloads/postgres-pos
 
 8. `python manage.py migrate`
 
-9. In a second terminal, `npm run build-production`
+9. In a second terminal, `npm start`
 
 10. In the original terminal, `python manage.py runserver 0.0.0.0:8080`
 
