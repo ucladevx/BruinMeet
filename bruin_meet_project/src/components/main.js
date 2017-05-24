@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Loader from 'halogenium/GridLoader';
 import api from '../config/api.js';
-import Header from './header.js';
 import EventList from './eventlist.js';
+import Header from '../containers/header.js';
 import Login from '../containers/login.js';
 import EventModal from './detail.js';
 import '../styles/main.css';
