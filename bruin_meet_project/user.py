@@ -39,6 +39,10 @@ def is_valid_email(email):
     if not (EMAIL_RE.match(email) or G_EMAIL_RE.match(email)):
         print "Invalid email (utils)"
         return False
+    return True
+
+def is_email_already_used(email):
+    print "Checking if", email, "is already used ... (utils)"
     conn = None
     rows = None
     try:
@@ -56,9 +60,9 @@ def is_valid_email(email):
     for row in rows:
         if row[0].rstrip() == email:
             print "Invalid email - already taken (utils)"
-            return False
+            return True
     print "Valid untaken email (utils)"
-    return True
+    return False
 
 def is_valid_login(email, password):
     print "Validating", email, "... (utils)"

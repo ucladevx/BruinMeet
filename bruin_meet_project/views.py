@@ -53,11 +53,14 @@ def signup(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         if user.is_valid_email(email):
-            user_id = user.insert_user(email, password)
-            if user_id:
-                response = HttpResponse('{\"Result\":\"Success\"}')
-                response.set_signed_cookie(key="uID", value=utils.make_cookie(user_id), salt=production.uID_salt)
-                return response
+            if not user.is_email_already_used(email):
+                user_id = user.insert_user(email, password)
+                if user_id:
+                    response = HttpResponse('{\"Result\":\"Success\"}')
+                    response.set_signed_cookie(key="uID", value=utils.make_cookie(user_id), salt=production.uID_salt)
+                    return response
+                else:
+                    response = HttpResponse('{\"Result\":\"Failure\",\"Reason\":\"Unknown\"')
             else:
                 response = HttpResponse('{\"Result\":\"Failure\",\"Reason\":\"Email Already Used\"}')
                 return response
