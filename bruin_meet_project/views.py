@@ -60,7 +60,7 @@ def signup(request):
                     response.set_signed_cookie(key="uID", value=utils.make_cookie(user_id), salt=production.uID_salt)
                     return response
                 else:
-                    response = HttpResponse('{\"Result\":\"Failure\",\"Reason\":\"Unknown\"')
+                    response = HttpResponse('{\"Result\":\"Failure\",\"Reason\":\"Invalid User\"')
             else:
                 response = HttpResponse('{\"Result\":\"Failure\",\"Reason\":\"Email Already Used\"}')
                 return response
