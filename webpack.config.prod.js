@@ -12,7 +12,7 @@ module.exports = {
   ],
   output: {
     // compiled bundle to be stored here
-    path: path.resolve('./assets/dist'),
+    path: path.resolve('./dist'),
     // naming convention webpack uses for our files
     filename: '[name]-[hash].js',
   },

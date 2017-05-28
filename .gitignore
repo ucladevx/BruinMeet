@@ -68,3 +68,7 @@ bruin_meet_project/production.py
 
 # webpack stats
 webpack-stats.json
+webpack-stats-prod.json
+
+# js bundles
+dist/
