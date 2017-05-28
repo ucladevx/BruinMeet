@@ -12,9 +12,10 @@ module.exports = {
   ],
   output: {
     // compiled bundle to be stored here
-    path: path.resolve('./dist'),
+    path: path.resolve('./assets/dist'),
     // naming convention webpack uses for our files
     filename: '[name]-[hash].js',
+    sourceMapFilename: '[name].map',
   },
 
   plugins: [
@@ -56,7 +57,7 @@ module.exports = {
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: 'file-loader?name=assets/fonts/[name].[ext]'
+        loader: 'file-loader?name=fonts/[name].[ext]'
       }
     ]
   },
