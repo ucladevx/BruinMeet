@@ -39,12 +39,7 @@ class API {
       return 'Network Failure';
     }
 
-    return res.then(function (response) {
-      if (response.data == 'True')
-        return true;
-      else
-        return false;
-    });
+    return res.data == 'True';
   }
 
   async logout() {
