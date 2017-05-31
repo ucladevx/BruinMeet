@@ -12,12 +12,14 @@ module.exports = {
       'webpack/hot/only-dev-server',
       './bruin_meet_project/src/index.js',
   ],
+  devtool: 'cheap-module-source-map',
   output: {
     // compiled bundle to be stored here
-    path: path.resolve('./assets/bundles/'),
+    path: path.resolve('./assets/bundles'),
     // naming convention webpack uses for our files
     filename: '[name]-[hash].js',
-    publicPath: 'http://localhost:3000/assets/bundles/',
+    publicPath: 'http://localhost:3000/assets/bundles',
+    sourceMapFilename: '[name].map'
   },
 
   plugins: [
@@ -52,7 +54,7 @@ module.exports = {
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: 'file-loader?name=assets/fonts/[name].[ext]'
+        loader: 'file-loader?name=fonts/[name].[ext]'
       }
     ]
   },

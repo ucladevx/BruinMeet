@@ -9,7 +9,7 @@ def insert_user(email, password):
     print "\nInserting", email, "with", password, ".... (insert_user)"
     if not is_valid_email(email):
         print "Unable to create user", email, "(insert_user)"
-        return False    
+        return False
     conn = None
     success = True
     user_id = utils.create_hash(str(email)+str(password))
@@ -39,6 +39,10 @@ def is_valid_email(email):
     if not (EMAIL_RE.match(email) or G_EMAIL_RE.match(email)):
         print "Invalid email (utils)"
         return False
+    return True
+
+def is_email_already_used(email):
+    print "Checking if", email, "is already used ... (utils)"
     conn = None
     rows = None
     try:
@@ -56,9 +60,9 @@ def is_valid_email(email):
     for row in rows:
         if row[0].rstrip() == email:
             print "Invalid email - already taken (utils)"
-            return False
+            return True
     print "Valid untaken email (utils)"
-    return True
+    return False
 
 def is_valid_login(email, password):
     print "Validating", email, "... (utils)"
@@ -86,3 +90,26 @@ def is_valid_login(email, password):
                 return False
     print "Invalid Login (utils)"
     return False
+
+def get_user(user_id):
+    print "\nGetting user:", user_id
+    conn = None
+    user = None
+    try:
+        conn = psycopg2.connect(conn_str)
+        cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+        cur.execute('select * from main.users where id=\'' + user_id + '\';')
+        user = cur.fetchone()
+        cur.close()
+    except psycopg2.DatabaseError as error:
+        print(error)
+        return False
+    finally:
+        if conn is not None:
+            conn.close()
+
+    if user:
+        print user
+        return user
+    print "Error getting user_id: ", user_id
+    return None

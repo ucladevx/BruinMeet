@@ -12,12 +12,14 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getMeetups: () => dispatch(actions.meetup.getMeetups())
+  getMeetups: () => dispatch(actions.meetup.getMeetups()),
+  getCurrentUser: () => dispatch(actions.login.getCurrentUser())
 })
 
 class MainContainer extends React.Component {
   constructor(props) {
     super(props);
+    this.props.getCurrentUser();
     this.props.getMeetups();
   }
 

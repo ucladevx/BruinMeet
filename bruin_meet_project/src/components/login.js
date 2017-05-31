@@ -18,13 +18,19 @@ class Login extends Component {
     e.preventDefault();
     if (!this.props.showSignup) {
       const res = await api.login({ email: this.state.email, password: this.state.password });
-      if (res == false) {
-        this.setState({ showError: true })
-      } else {
+      if (res) {
+        this.props.setCurrentUser({ email: this.state.email });
         this.props.toggleLoginModal();
+      } else {
+        this.setState({ showError: true })
       }
     } else {
       const res = await api.signup({ email: this.state.email, password: this.state.password });
+      console.log(res);
+      if (res === 'Success') {
+        this.props.setCurrentUser({ email: this.state.email });
+        this.props.toggleLoginModal();
+      }
     }
   }
 
@@ -53,7 +59,7 @@ class Login extends Component {
               onChange={(e)=> this.setState({ password: e.target.value })}
             />
           </label>
-          <p className="label-signup" onClick={this.props.toggleSignup}>Not yet registered?</p>
+          <p className="label-signup" onClick={this.props.toggleSignup}>{this.props.showSignup ? "Already registered?" : "Not yet registered?"}</p>
           {this.state.showError
             ? <p className='error'>Sorry, there is no such combination of email and password.</p>
             : null}

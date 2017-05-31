@@ -10,8 +10,8 @@ const login = (state = initialState, action) => {
       return { ...state, showModal: !state.showModal }
     case 'LOGIN_TOGGLE_SIGNUP':
       return { ...state, showSignup: !state.showSignup }
-    case 'LOGIN_USER':
-      return { ...state, currentUser: action.info }
+    case 'LOGIN_SET_CURRENT_USER':
+      return { ...state, currentUser: action.user }
     default:
       return state
   }
