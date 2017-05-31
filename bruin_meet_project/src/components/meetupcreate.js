@@ -21,6 +21,7 @@ class Create extends Component {
 
     render() {
         return (
+    <div className='background'>
     <div className='formContainer'>
     <div className='sideBar' />
     <div className='topDiv'>
@@ -53,6 +54,7 @@ class Create extends Component {
             <img src={host} className='ic-heart-d' />
             <p className='host'>Hosted by<br></br>Alberto Duncan</p>
         </div>
+    </div>
     </div>
     </div>)
     }

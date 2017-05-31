@@ -12,10 +12,10 @@ const Header = (props) => (
     {/*add on click to convert to search bar*/}
     {props.isLoggedIn
       ? <div className="right-container">
-        <a onClick={_.noop}>
+        <a onClick={props.toggleMeetupModal}>
           <img src={addIcon} className="ic-circular" />
         </a>
-        <p className="white">Log Off</p>
+        <p className="white" onClick={props.logout}>Log Off</p>
       </div>
       : <a className="btn-header" onClick={props.toggleLoginModal}>
         <p className="white">Log In</p>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import Modal from './utils/modal.js';
 import api from '../config/api.js';
 import '../styles/login.css';
-import _ from 'lodash';
 
 class Login extends Component {
 	constructor(props) {
@@ -36,8 +36,8 @@ class Login extends Component {
 
   render() {
     return (
-      <div className='background' onClick={this.props.toggleLoginModal}>
-        <div className='container' onClick={(e) => { e.stopPropagation(); }}>
+      <Modal onClose={this.props.toggleLoginModal}>
+        <div className='container'>
           <h2>Bruin Meet</h2>
           <h3>Get Started</h3>
         <form onSubmit={(e)=> this.handleSubmit(e)}>
@@ -66,7 +66,7 @@ class Login extends Component {
           <input className="inputStyles login" type="submit" value={this.props.showSignup ? "Sign up!" : "Log In"} />
           </form>
         </div>
-      </div>
+      </Modal>
     )
   }
 }

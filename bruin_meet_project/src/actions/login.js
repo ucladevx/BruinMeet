@@ -13,6 +13,14 @@ export const setCurrentUser = (user) => ({
   user
 })
 
+export const logout = () =>
+  async (dispatch) => {
+    const res = await api.logout();
+    if (res.ok) {
+      dispatch(setCurrentUser(null));
+    }
+  }
+
 export const getCurrentUser = () =>
   async (dispatch) => {
     const user = await api.getCurrentUser();

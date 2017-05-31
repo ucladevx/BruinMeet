@@ -23,6 +23,10 @@ export const resetCurrentMeetup = () => ({
   type: 'MEETUPS_RESET_CURRENT'
 })
 
+export const toggleModal = () => ({
+  type: 'MEETUPS_TOGGLE_MODAL'
+})
+
 export const getMeetups = () =>
   async (dispatch) => {
     dispatch(requestMeetups());

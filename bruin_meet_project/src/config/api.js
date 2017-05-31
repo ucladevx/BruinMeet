@@ -30,26 +30,25 @@ class API {
     });
   }
 
-  login(info) {
+  async login(info) {
     var body = 'email=' + encodeURIComponent(info.email) + '&password=' + encodeURIComponent(info.password);
-    const res = this._client.post('/login/', body);
+    const res = await this._client.post('/login/', body);
 
     if (res.problem) {
       console.error(res);
       return 'Network Failure';
     }
 
-    return res.then(function (response) {
-      if (response.data == 'True')
-        return true;
-      else
-        return false;
-    });
+    return res.data == 'True';
   }
 
-  signup(info) {
+  async logout() {
+    return await this._client.post('/logout/');
+  }
+
+  async signup(info) {
     var body = 'email=' + encodeURIComponent(info.email) + '&password=' + encodeURIComponent(info.password);
-    const res = this._client.post('/signup/', body);
+    const res = await this._client.post('/signup/', body);
 
     if (res.problem) {
       console.error(res);
@@ -64,14 +63,14 @@ class API {
     });
   }
 
-  create_meetup(info) {
+  async create_meetup(info) {
     var body = 'title=' + encodeURIComponent(info.title) + '&description=' +
       encodeURIComponent(info.description) + '&timestamp=' +
       encodeURIComponent(info.timestamp) + '&location=' +
       encodeURIComponent(info.location) + '&maxim_cap=' +
       encodeURIComponent(info.maxim_cap) + '&people=' +
       encodeURIComponent(info.people);
-    const res = this._client.post('/create_meetup/', body, {
+    const res = await this._client.post('/create_meetup/', body, {
       headers: this._defaultHeaders
     });
 
@@ -97,6 +96,7 @@ class API {
 
     if (res.problem) {
       console.error(res);
+      res.data = null;
     }
 
     return res.data;
