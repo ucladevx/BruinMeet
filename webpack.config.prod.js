@@ -15,7 +15,6 @@ module.exports = {
     path: path.resolve('./assets/dist'),
     // naming convention webpack uses for our files
     filename: '[name]-[hash].js',
-<<<<<<< HEAD
     publicPath: '/assets/bundles/',
   },
 
