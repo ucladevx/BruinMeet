@@ -1,5 +1,5 @@
 import {create} from 'apisauce';
-//const BASE_URL = 'http://ec2-54-193-66-196.us-west-1.compute.amazonaws.com';
+// const BASE_URL = 'http://ec2-54-193-66-196.us-west-1.compute.amazonaws.com';
 const BASE_URL = 'http://localhost:8000';
 class API {
   constructor() {
@@ -88,8 +88,18 @@ class API {
     if (res.problem) {
       console.error(res);
     }
-    
+
     return res.data.nonuser_meetups;
+  }
+
+  async getCurrentUser() {
+    const res = await this._client.get('/get_current_user');
+
+    if (res.problem) {
+      console.error(res);
+    }
+
+    return res.data;
   }
 }
 

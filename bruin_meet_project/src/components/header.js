@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import RotatingText from 'react-rotating-text';
 import addIcon from '../img/ic-plus.png';
 import menuIcon from '../img/ic-menu.png';
@@ -10,8 +11,15 @@ const Header = (props) => (
     <div className = "message"><p className="txt-header">I am looking <RotatingText className="opac" items={['for a study partner', 'to form a band', 'to Netflix/Chill']} /></p></div>
     {/*add on click to convert to search bar*/}
     {props.isLoggedIn
-      ? <a className="btn-header" onClick={props.onAdd}> <img src={addIcon} className="ic-circular" /> <p className="color-white">Log Off</p></a>
-      : <a className="btn-header" onClick={props.toggleLoginModal}><p className="color-white">Log In</p></a>}
+      ? <div className="right-container">
+        <a onClick={_.noop}>
+          <img src={addIcon} className="ic-circular" />
+        </a>
+        <p className="white">Log Off</p>
+      </div>
+      : <a className="btn-header" onClick={props.toggleLoginModal}>
+        <p className="white">Log In</p>
+      </a>}
   </div>
 )
 

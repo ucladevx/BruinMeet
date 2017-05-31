@@ -147,3 +147,14 @@ def delete_meetup(request):
             return True
 
     return False
+
+# current user
+def get_current_user(request):
+    if request.method == 'GET':
+        cookie = request.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
+        if cookie:
+            cookie_uID = utils.check_cookie(cookie)
+            cur_user = user.get_user(cookie_uID)
+            if cur_user:
+                return JsonResponse(cur_user)
+    return False
