@@ -22,10 +22,10 @@ def insert_meetup(title, description, t_time, location, maxim_cap, people, user_
     if not is_valid_meetup_info(info):
         print "Invalid meetup info", title, "(insert_meetup)"
         return False
-    
+
     conn = None
     success = True
-    
+
     try:
         conn = psycopg2.connect(conn_str)
         cur = conn.cursor()
@@ -53,7 +53,7 @@ def edit_meetup(meetup_id, new_meetup_id, old_title, new_title, description, t_t
 
     conn = None
     success = True
-    
+
     try:
         conn = psycopg2.connect(conn_str)
         cur = conn.cursor()
@@ -110,16 +110,15 @@ def get_meetups(sql_command):
             info.append(item)
         meetups.append(info)
     return meetups
-    
+
 def get_all_meetups():
     print "\nGetting all meetups..."
     return get_meetups(sql_mm)
 
 def get_user_meetups(user_id):
-    print "\nGetting all user meetups..."    
+    print "\nGetting all user meetups..."
     return get_meetups('select * from main.meetups where user_id = \'' + str(user_id) + '\';')
 
 def get_nonuser_meetups(user_id):
     print "\nGetting all nonuser meetups..."
-    return get_meetups('select * from main.meetups where user_id!=' + str(user_id) + ';')
-
+    return get_meetups('select * from main.meetups where user_id != \'' + str(user_id) + '\';')
