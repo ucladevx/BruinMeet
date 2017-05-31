@@ -47,6 +47,14 @@ def login(request):
     response.status_code = 403
     return response
 
+def logout(request):
+    response = HttpResponse()
+    if request.method == "POST":
+        response.delete_cookie(key="uID")
+        return response
+    response.status_code = 403
+    return response
+
 # API to create new user
 def signup(request):
     if request.method == "POST":
@@ -157,4 +165,6 @@ def get_current_user(request):
             cur_user = user.get_user(cookie_uID)
             if cur_user:
                 return JsonResponse(cur_user)
-    return False
+    response = HttpResponse()
+    response.status_code = 403
+    return response

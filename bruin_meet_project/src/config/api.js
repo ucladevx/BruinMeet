@@ -47,7 +47,11 @@ class API {
     });
   }
 
-  signup(info) {
+  async logout() {
+    return await this._client.post('/logout/');
+  }
+
+  async signup(info) {
     var body = 'email=' + encodeURIComponent(info.email) + '&password=' + encodeURIComponent(info.password);
     const res = this._client.post('/signup/', body);
 
@@ -97,6 +101,7 @@ class API {
 
     if (res.problem) {
       console.error(res);
+      res.data = null;
     }
 
     return res.data;

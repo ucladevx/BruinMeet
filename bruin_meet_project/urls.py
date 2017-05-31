@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'^edit_meetup/', bruin_meet_project.views.edit_meetup, name='edit_meetup'),
     url(r'^delete_meetup/', bruin_meet_project.views.delete_meetup, name='delete_meetup'),
     url(r'^get_current_user/', bruin_meet_project.views.get_current_user, name='get_current_user'),
+    url(r'^logout/', bruin_meet_project.views.logout, name='logout'),
     url(r'^admin/', admin.site.urls)
 ]
