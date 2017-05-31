@@ -5,6 +5,7 @@ import Header from '../containers/header.js';
 import MeetupList from '../containers/meetuplist.js';
 import Login from '../containers/login.js';
 import MeetupModal from '../containers/meetupdetail.js';
+import CreateMeetup from './meetupcreate.js';
 import '../styles/main.css';
 
 const Main = (props) => (
@@ -15,6 +16,7 @@ const Main = (props) => (
       : <MeetupList />}
       {props.showLoginModal ? <Login /> : null}
       {props.currentMeetupId ? <MeetupModal /> : null}
+      {props.showCreateMeetup ? <CreateMeetup /> : null}
     </div>
 )
 

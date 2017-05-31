@@ -7,7 +7,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleLoginModal: () => dispatch(actions.login.toggleModal())
+  toggleLoginModal: () => dispatch(actions.login.toggleModal()),
+  toggleMeetupModal: () => dispatch(actions.meetup.toggleModal()),
+  logout: () => dispatch(actions.login.logout()),
 })
 
 export default connect(

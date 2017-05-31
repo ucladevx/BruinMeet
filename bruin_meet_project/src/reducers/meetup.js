@@ -2,7 +2,8 @@ const initialState = {
   result: [],
   networkError: false,
   loading: true,
-  currentMeetupId: null
+  currentMeetupId: null,
+  showModal: false,
 }
 
 const meetup = (state = initialState, action) => {
@@ -17,6 +18,8 @@ const meetup = (state = initialState, action) => {
       return { ...state, currentMeetupId: action.id }
     case 'MEETUPS_RESET_CURRENT':
       return { ...state, currentMeetupId: null }
+    case 'MEETUPS_TOGGLE_MODAL':
+      return { ...state, showModal: !state.showModal }
     default:
       return state
   }

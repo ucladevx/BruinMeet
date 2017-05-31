@@ -5,6 +5,7 @@ import Main from '../components/main.js';
 
 const mapStateToProps = (state) => ({
   showLoginModal: state.login.showModal,
+  showCreateMeetup: state.meetup.showModal,
   areMeetupsLoading: state.meetup.loading,
   isMeetupsError: state.meetup.networkError,
   meetups: state.meetup.result,
