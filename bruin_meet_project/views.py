@@ -79,7 +79,6 @@ def signup(request):
     response.status_code = 403
     return response
 
-# API to create meetupx
 def create_meetup(request):
     if request.method == "POST":
         title = request.POST.get('title')
@@ -99,7 +98,7 @@ def create_meetup(request):
                     return response
         response = HttpResponse('False')
         return response
-
+    
 def edit_meetup(request):
     if request.method == "POST":
         cookie = request.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
@@ -137,6 +136,7 @@ def edit_meetup(request):
     response.status_code = 403
     return response
 
+# API to remove meetup
 def delete_meetup(request):
     if request.method == "POST":
         cookie = request.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
@@ -165,6 +165,9 @@ def get_current_user(request):
             cur_user = user.get_user(cookie_uID)
             if cur_user:
                 return JsonResponse(cur_user)
-    response = HttpResponse()
-    response.status_code = 403
-    return response
+        response = HttpResponse('{\"Result\":\"Failure\",\"Reason\":\"No user logged in\"')
+        return response
+    else:
+        response = HttpResponse()
+        response.status_code = 403
+        return response

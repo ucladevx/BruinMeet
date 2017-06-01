@@ -4,6 +4,7 @@ import production, utils
 conn_str = production.conn_str
 sql_mu = production.sql_mu
 sql_mu_in = production.sql_mu_in
+pass_salt = production.pass_salt
 
 def insert_user(email, password):
     print "\nInserting", email, "with", password, ".... (insert_user)"
@@ -19,7 +20,8 @@ def insert_user(email, password):
     try:
         conn = psycopg2.connect(conn_str)
         cur = conn.cursor()
-        cur.execute(sql_mu_in, (email, password, user_id))
+        hash_pass = utils.create_pass_hash(password)
+        cur.execute(sql_mu_in, (email, hash_pass, user_id))
         conn.commit()
         cur.close()
     except psycopg2.DatabaseError as error:
@@ -82,7 +84,7 @@ def is_valid_login(email, password):
             conn.close()
     for row in rows:
         if row[0].rstrip() == email:
-            if row[1].rstrip() == password:
+            if check_password(row[1].rstrip(), password):
                 print "Valid Login (utils)"
                 return row[2].rstrip() # user_id
             else:
