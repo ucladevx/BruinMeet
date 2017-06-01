@@ -11,7 +11,7 @@ def welcome(request):
 
 # API to get all meetups
 def get_meetups(request):
-    if request.method == "POST":
+    if request.method == "GET":
         cookie = request.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
         if cookie:
             cookie_uID = utils.check_cookie(cookie)
