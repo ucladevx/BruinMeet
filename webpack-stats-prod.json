@@ -1,1 +1,1 @@
-{"status":"done","publicPath":"/assets/bundles/","chunks":{"main":[{"name":"main-a8a66fa069a304ddd34b.js","publicPath":"/assets/bundles/main-a8a66fa069a304ddd34b.js","path":"/home/ec2-user/BruinMeet/assets/dist/main-a8a66fa069a304ddd34b.js"}]}}
+{"status":"done","publicPath":"/assets/dist/","chunks":{"main":[{"name":"main-e761d88080ece7c0adcc.js","publicPath":"/assets/dist/main-e761d88080ece7c0adcc.js","path":"/usr/local/apache2/htdocs/BruinMeet/assets/dist/main-e761d88080ece7c0adcc.js"}]}}

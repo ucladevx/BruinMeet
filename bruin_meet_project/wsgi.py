@@ -8,9 +8,11 @@ https://docs.djangoproject.com/en/1.11/howto/deployment/wsgi/
 """
 
 import os
+import sys
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bruin_meet_project.settings")
+sys.path.append("/usr/local/apache2/htdocs/BruinMeet/")
+os.environ["DJANGO_SETTINGS_MODULE"] = "bruin_meet_project.settings"
 
 application = get_wsgi_application()
