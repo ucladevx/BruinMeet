@@ -1,0 +1,48 @@
+input[type="text"]
+{
+    background: transparent;
+    border: none;
+}
+
+.in{
+    margin-top: 15px;
+    margin-left: -200px;
+}
+.inputB{
+    float: left;
+    width: 150%;
+    font-size: 2em;
+    position: relative;
+    margin-bottom: -1em;
+    color: white;
+    display: inline-block;
+    font-weight: 300;
+    overflow: hidden;
+    font-family: 'Josefin Sans';    
+    letter-spacing: 0px;
+    text-align: center;
+}
+
+:focus {outline:none;}
+
+.ic-search{
+    float: right;
+    height: 20px;
+    margin-left: 70%;
+    display: flex;
+    margin-top: 8px;
+    padding-top: 12px;
+    color: white;
+    position: fixed;
+}
+
+/* Keyword value */
+caret-color: auto;
+color: transparent;
+color: currentColor;
+
+/* <color> values */
+caret-color: red;
+caret-color: #5729e9;
+caret-color: rgb(0, 200, 0);
+caret-color: hsla(228, 4%, 24%, 0.8);
