@@ -82,7 +82,7 @@ class API {
   }
 
   async getNonUserMeetups() {
-    const res = await this._client.post('/get_meetups/');
+    const res = await this._client.get('/get_meetups/');
 
     if (res.problem) {
       console.error(res);
