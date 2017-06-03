@@ -3,13 +3,18 @@ import _ from 'lodash';
 import RotatingText from 'react-rotating-text';
 import addIcon from '../img/ic-plus.png';
 import menuIcon from '../img/ic-menu.png';
+import logo from '../img/logo.png';
+import searchIcon from '../img/search.png';
+import SearchBar from '../components/searchBar.js';
 import '../styles/header.css'
 
 const Header = (props) => (
   <div className="search-header">
-    <img src={menuIcon} className="ic-circular" />
-    <div className = "message"><p className="txt-header">I am looking <RotatingText className="opac" items={['for a study partner', 'to form a band', 'to Netflix/Chill']} /></p></div>
-    {/*add on click to convert to search bar*/}
+
+    <img src={logo} className="ic-logo" />
+    <SearchBar></SearchBar>  
+    <input type="image" src={searchIcon} onClick={() => this.handleClick(!this.state.clicked)} className = "ic-search"/>
+  
     {props.isLoggedIn
       ? <div className="right-container">
         <a onClick={props.toggleMeetupModal}>
