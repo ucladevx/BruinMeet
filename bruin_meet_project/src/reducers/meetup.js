@@ -30,7 +30,7 @@ const meetup = (state = initialState, action) => {
         editLoading: false,
         currentMeetupId: action.newMeetupId,
         result: {
-        ..._.reject(state.result, { id: action.meetup.id }),
+        ..._.omit(state.result, action.meetup.id),
         [action.newMeetupId]: {
           ...action.meetup,
           id: action.newMeetupId

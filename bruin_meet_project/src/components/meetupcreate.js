@@ -37,6 +37,7 @@ class Create extends Component {
                 alert("Unknown error occurred.");
             }
             else {
+                this.props.getMeetups();
                 this.props.toggleMeetupModal();
             }
         }

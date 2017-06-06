@@ -71,7 +71,6 @@ class Detail extends Component {
             {this.getHeaderComponents()}
           </div>
           {/* <p className='detail'>Dinesh gets back to the ground while Richard continues to explore his new project. Gavin tries to come out of the new problem he has gotten himself into and interestingly the chemistry between Richard and Monica takes a new turn.</p> */}
-
           <div className= 'host'>
             {this.props.isEditing ?
             <div>
