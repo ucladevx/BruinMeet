@@ -88,6 +88,7 @@ def create_meetup(request):
         maxim_cap = request.POST.get('maxim_cap')
         people = request.POST.get('people')
         type_event = request.POST.get('type_event')
+        tags = request.POST.get('tags')
         
         cookie = request.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
         if cookie:
@@ -123,10 +124,12 @@ def edit_meetup(request):
         maxim_cap = request.POST.get('new_maxim_cap')
         people = request.POST.get('new_people')
         num_stars = request.POST.get('num_stars')
+        tags = request.POST.get('tags')
+        
         hash_seed = str(title) + str(description) + str(t_time) + str(location) + str(maxim_cap) + str(user_id)
         new_meetup_id = utils.create_hash(hash_seed)
 
-        if meetup.edit_meetup(meetup_id, new_meetup_id, title, description, t_time, location, maxim_cap, people, user_id, num_stars):
+        if meetup.edit_meetup(meetup_id, new_meetup_id, title, description, t_time, location, maxim_cap, people, user_id, num_stars, tags):
             response = JsonResponse({ 'Result': 'True', 'new_meetup_id': new_meetup_id })
             return response
         else:
