@@ -42,8 +42,8 @@ input[type=number]
     box-shadow: 0px 1px 3px #DCDCDC;
     position: relative;
     padding: 0 1.2em 1em 2em;
-    width: 600px;
-    height: 450px;
+    width: 45%;
+    height: 55%;
     font-family: HelveticaNeue-Light;
     letter-spacing: 0px;
 }
