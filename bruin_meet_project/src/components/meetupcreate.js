@@ -19,6 +19,7 @@ class Create extends Component {
             type: 'social',
             tags: ['']
 	    };
+    this.getInputClassNameForType = this.getInputClassNameForType.bind(this);
 	}
 
     async handleSubmit(e) {
@@ -47,6 +48,11 @@ class Create extends Component {
         }
     }
 
+    getInputClassNameForType(type) {
+
+      return `c-inputStyles ${type} ${type === this.state.type ? type + '-current' : ''}`;
+    }
+
     render() {
         return (
     <Modal onClose={this.props.toggleMeetupModal}>
@@ -73,11 +79,11 @@ class Create extends Component {
         <input type='number' className='p-ppl' placeholder='Max # of people' onChange={(e)=> this.setState({ num: e.target.value })}></input>
     </div>
     <div className='buttons'>
-            <input className="c-inputStyles social" type="button" value="Social" onClick={(e)=> this.setState({ type: "social" })}/>
-            <input className="c-inputStyles active" type="button" value="Active" onClick={(e)=> this.setState({ type: "active" })}/>
-            <input className="c-inputStyles food" type="button" value="Food" onClick={(e)=> this.setState({ type: "food" })}/>
-            <input className="c-inputStyles study" type="button" value="Study" onClick={(e)=> this.setState({ type: "study" })}/>
-            <input className="c-inputStyles random" type="button" value="Random" onClick={(e)=> this.setState({ type: "random" })}/>
+            <input className={this.getInputClassNameForType('social')} type="button" value="Social" onClick={(e)=> this.setState({ type: "social" })}/>
+            <input className={this.getInputClassNameForType('active')} type="button" value="Active" onClick={(e)=> this.setState({ type: "active" })}/>
+            <input className={this.getInputClassNameForType('food')} type="button" value="Food" onClick={(e)=> this.setState({ type: "food" })}/>
+            <input className={this.getInputClassNameForType('study')} type="button" value="Study" onClick={(e)=> this.setState({ type: "study" })}/>
+            <input className={this.getInputClassNameForType('random')} type="button" value="Random" onClick={(e)=> this.setState({ type: "random" })}/>
     </div>
     <div className='foot'>
         <input className="inputStyles cre" type="submit" value="Create Meetup" onClick={(e) => this.handleSubmit(e)}/>
@@ -90,7 +96,6 @@ class Create extends Component {
     </Modal>)
     }
 }
-
 // POST: signup/email,
 
 export default Create;

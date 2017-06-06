@@ -13,15 +13,17 @@ const Header = (props) => (
   <div className="search-header">
 
     <img src={logo} className="ic-logo" />
-    <SearchBar></SearchBar>  
+    <SearchBar></SearchBar>
     <input type="image" src={searchIcon} onClick={() => this.handleClick(!this.state.clicked)} className = "ic-search"/>
-  
+
     {props.isLoggedIn
       ? <div className="right-container">
         <a onClick={props.toggleMeetupModal}>
           <img src={addIcon} className="ic-circular" />
         </a>
-        <p className="white" onClick={props.logout}>Log Off</p>
+        <a className="btn-header" onClick={props.logout}>
+          <p className="white">Log Off</p>
+        </a>
       </div>
       : <a className="btn-header" onClick={props.toggleLoginModal}>
         <p className="white">Log In</p>
