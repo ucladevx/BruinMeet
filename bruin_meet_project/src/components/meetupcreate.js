@@ -3,6 +3,7 @@ import React, {
 }
 from 'react';
 import '../styles/meetupcreate.css';
+import Modal from './utils/modal.js';
 import host from '../img/host.png';
 
 class Create extends Component {
@@ -11,17 +12,17 @@ class Create extends Component {
 		this.state = {
 			title: '',
 			num: '',
-            description: '',
-            place: '',
-            time: '',
-            type: '',
-            tags: ['']
+      description: '',
+      place: '',
+      time: '',
+      type: '',
+      tags: ['']
 		};
 	}
 
     render() {
         return (
-    <div className='background'>
+    <Modal onClose={this.props.toggleMeetupModal}>
     <div className='formContainer'>
         <form>
             <div className='sideBar' />
@@ -90,7 +91,7 @@ class Create extends Component {
             </div>
         </form>
         </div>
-    </div>)
+    </Modal>)
     }
 }
 
