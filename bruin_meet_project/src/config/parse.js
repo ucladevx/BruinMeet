@@ -1,4 +1,11 @@
-export const parseMeetups = (meetups) => meetups.reduce((acc, meetup) => ({
+export const parseResMeetups = (resMeetups) => {
+  var result = parseMeetups(resMeetups.nonuser_meetups);
+  if (resMeetups.valid_user === "True")
+    result = { ...result, ...parseMeetups(resMeetups.user_meetups) };
+  return result;
+}
+
+const parseMeetups = (meetups) => meetups.reduce((acc, meetup) => ({
   ...acc,
   [meetup[0]]: {
     id: meetup[0],

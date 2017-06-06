@@ -78,14 +78,14 @@ class API {
     return res;
   }
 
-  async getNonUserMeetups() {
+  async getMeetups() {
     const res = await this._client.get('/get_meetups/');
 
     if (res.problem) {
       console.error(res);
     }
 
-    return res.data.nonuser_meetups;
+    return res.data;
   }
 
   async getCurrentUser() {
