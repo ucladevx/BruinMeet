@@ -4,6 +4,7 @@ import RotatingText from 'react-rotating-text';
 import addIcon from '../img/ic-plus.png';
 import menuIcon from '../img/ic-menu.png';
 import logo from '../img/logo.png';
+import logo2 from '../img/logo2.png';
 import searchIcon from '../img/search.png';
 import SearchBar from '../components/searchBar.js';
 import '../styles/header.css'
