@@ -23,7 +23,7 @@
     font-family: 'HelveticaNeue';
     font-weight: 100;
     color: #889399;
-    
+
     border: none;
     float: left;
 }
@@ -46,14 +46,14 @@ input[type=number]
     font-family: 'HelveticaNeue';
     font-size: 18px;
     color: #889399;
-    
+
     border: none;
     float: left;
     margin: 0;
     padding: 0;
-    
+
     font-weight: 200;
-    
+
     height: 21px;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -124,7 +124,7 @@ textarea {
     font-family: 'HelveticaNeue';
     font-size: 18px;
     color: #889399;
-    
+
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -244,6 +244,7 @@ textarea {
     border-radius: 8px;
     padding-left: 1px;
     padding: 5px;
+    cursor: pointer;
 }
 
 .tags{
@@ -284,17 +285,17 @@ textarea {
     border: 1px solid #E83F6F;
 }
 
-.social:hover{
+.social:hover, .social-current {
     background-color: #E83F6F;
     color: white;
 }
 
-.active{
+.active {
     color: #32936F;
     border: 1px solid #32936F;
 }
 
-.active:hover{
+.active:hover, .active-current{
     background-color: #32936F;
     color: white;
 }
@@ -304,7 +305,7 @@ textarea {
     border: 1px solid #2274A5;
 }
 
-.study:hover{
+.study:hover, .study-current {
     background-color: #2274A5;
     color: white;
 }
@@ -314,7 +315,7 @@ textarea {
     border: 1px solid #FFBF00;
 }
 
-.food:hover{
+.food:hover, .food-current {
     background-color: #FFBF00;
     color: white;
 }
@@ -324,7 +325,7 @@ textarea {
     border: 1px solid #1F2421;
 }
 
-.random:hover{
+.random:hover, .random-current {
     background-color: #1F2421;
     color: white;
 }
