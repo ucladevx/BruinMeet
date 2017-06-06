@@ -30,7 +30,8 @@ class Create extends Component {
                 description: this.state.description,
                 timestamp: this.state.time,
                 location: this.state.location,
-                maxim_cap: this.state.num
+                maxim_cap: this.state.num,
+                type: this.state.type
             });
 
             if (res !== true) {

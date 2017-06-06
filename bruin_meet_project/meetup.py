@@ -3,7 +3,7 @@ import production, utils
 
 conn_str = production.conn_str
 sql_mm = 'select * from main.meetups'
-sql_mm_in = 'insert into main.meetups (id, title, description, t_time, location, maxim_cap, people, user_id, user_ids) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);'
+sql_mm_in = 'insert into main.meetups (id, title, description, t_time, location, maxim_cap, people, user_id, user_ids, type_event) values (\'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\');'
 
 def is_valid_meetup_info(info):
     return True
@@ -15,7 +15,7 @@ def insert_meetup(title, description, t_time, location, maxim_cap, people, user_
     print "location:\t", location
     print "maximum cap:\t", maxim_cap
     print "type:\t", type_event
-    
+
     hash_seed = str(title) + str(description) + str(t_time) + str(location) + str(maxim_cap) + str(user_id) + str(type_event)
     meetup_id = utils.create_hash(hash_seed)
     info = [meetup_id, title, description, t_time, location, maxim_cap, type_event]

@@ -15,6 +15,7 @@ const parseMeetups = (meetups) => meetups.reduce((acc, meetup) => ({
     location: meetup[4],
     maxLimit: meetup[5],
     curGoing: meetup[6],
-    authorId: meetup[7]
+    authorId: meetup[7],
+    type: (meetup[10] || 'social')
   }
 }), {})
