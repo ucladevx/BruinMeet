@@ -8,7 +8,7 @@ sql_mm_in = 'insert into main.meetups (id, title, description, t_time, location,
 def is_valid_meetup_info(info):
     return True
 
-def insert_meetup(title, description, t_time, location, maxim_cap, people, user_id, type_event):
+def insert_meetup(title, description, t_time, location, maxim_cap, people, user_id, type_event, tags):
     print "\nCreating meetup", title
     print "description:\t", description
     print "time:\t\t", t_time

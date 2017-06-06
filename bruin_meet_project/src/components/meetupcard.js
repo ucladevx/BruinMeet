@@ -11,10 +11,9 @@ const MeetupCard = (props) => (
     <p className='meetup-location'>{props.meetup.location}</p>
     <p className='meetup-time'>{moment(props.meetup.date).format('MMMM Do, h:mm a')}</p>
     <div className='meetup-footer'>
-      <div className='meetup-tags'>
-        <Tag name='Netflix' />
-        <Tag name='Chill' />
-      </div>
+      {props.meetup.tags ? <div className='meetup-tags'>
+        {props.meetup.tags.split(' ').map((tag) => <Tag name={tag} />)}
+      </div> : null}
       <div className='meetup-details'>
         <div className='meetup-detail'>
           <img src={peopleIcon} className='ic-people' />
