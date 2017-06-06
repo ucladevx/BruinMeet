@@ -30,7 +30,7 @@ def insert_meetup(title, description, t_time, location, maxim_cap, people, user_
         conn = psycopg2.connect(conn_str)
         cur = conn.cursor()
         people = 1
-        cur.execute(sql_mm_in, (meetup_id, title, description, t_time, location, maxim_cap, people, user_id))
+        cur.execute(sql_mm_in, (meetup_id, title, description, t_time, location, maxim_cap, people, user_id, user_id))
         conn.commit()
         cur.close()
     except psycopg2.DatabaseError as error:
@@ -68,6 +68,38 @@ def edit_meetup(meetup_id, new_meetup_id, old_title, new_title, description, t_t
             conn.close()
     print "Successfully edited meetup"
     return True
+
+def add_person_to_meetup(meetup_id, new_user_id):
+    conn = None
+    try:
+        conn = psycopg2.connect(conn_str)
+        cur = conn.cursor()
+        cur.execute("select * from main.meetups where id=\'%s\'" % str(new_user_id))
+        rows = cur.fetchall()
+        db_user_id = rows[0][2]
+        if not rows:
+            print "Could not find user with id:", new_user_id 
+            return False
+        cur.execute("select * from main.meetups where id=\'%s\'" % str(meetup_id))
+        rows = cur.fetchall()
+        if not rows:
+            print "Could not find meetup with id:", meetup_id
+            return False
+        people = rows[0][7]
+        user_ids = rows[0][9]
+        if db_user_id in user_ids:
+            print "User id:", new_user_id, "already going to meetup id:", meetup_id
+            return False
+        cur.execute('update main.meetups set people=\'%s\', user_ids=\'%s\' where id=\'%s\';' % (int(people) + 1, str(user_ids) + "|" + str(new_user_id), meetup_id))
+        conn.commit()
+        cur.close()
+    except psycopg2.DatabaseError as error:
+        print(error)
+        return False
+    finally:
+        if conn is not None:
+            conn.close()
+    return meetup_id
 
 def delete_meetup(meetup_id):
     conn = None

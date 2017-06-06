@@ -136,6 +136,31 @@ def edit_meetup(request):
     response.status_code = 403
     return response
 
+# API to add user to meetup
+def add_user_to_meetup(request):
+    if request.method == "POST":
+        cookie = request.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
+        if not cookie:
+            return False
+        cookie_uID = utils.check_cookie(cookie)
+        if not cookie_uID:
+            return False
+
+        meetup_id = request.POST.get('meetup_id')
+        user_id = request.POST.get('new_user_id')
+        get_userID_from_meetupID(meetup_id)
+
+        rv = meetup.add_user_to_meetup(meetup_id, user_id)
+        if not rv:
+            response = HttpResponse('{\"Result\":\"Failure\",\"Reason\":\"Your request to join is rejected!\"')
+        else:
+            response = HttpResponse('{\"Result\":\"Failure\",\"Reason\":\"Congrats! You have been successfully added to the event!\"')
+        return response
+    else:
+        response = HttpResponse()
+        response.status_code = 500
+        return response
+        
 # API to remove meetup
 def delete_meetup(request):
     if request.method == "POST":
