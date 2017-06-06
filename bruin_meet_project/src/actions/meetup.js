@@ -1,5 +1,5 @@
 import api from '../config/api.js';
-import { parseMeetups } from '../config/parse.js';
+import { parseResMeetups } from '../config/parse.js';
 
 export const setMeetups = (meetups) => ({
   type: 'MEETUPS_SET',
@@ -30,9 +30,9 @@ export const toggleModal = () => ({
 export const getMeetups = () =>
   async (dispatch) => {
     dispatch(requestMeetups());
-    const res = await api.getNonUserMeetups();
+    const res = await api.getMeetups();
     if (res) {
-      dispatch(setMeetups(parseMeetups(res)));
+      dispatch(setMeetups(parseResMeetups(res)));
     } else {
       dispatch(requestMeetupsFail());
     }

@@ -52,15 +52,12 @@ class API {
 
     if (res.problem) {
       console.error(res);
-      return 'Network Failure';
     }
 
-    return res.then(function (response) {
-      if (response.Result == 'Failure')
-        return response.Reason;
-      else
-        return 'Success';
-    });
+    if (res.data && res.data.Result === 'Success')
+      return 'Success';
+    else
+      return 'Failure';
   }
 
   async create_meetup(info) {
@@ -81,14 +78,14 @@ class API {
     return res;
   }
 
-  async getNonUserMeetups() {
+  async getMeetups() {
     const res = await this._client.get('/get_meetups/');
 
     if (res.problem) {
       console.error(res);
     }
 
-    return res.data.nonuser_meetups;
+    return res.data;
   }
 
   async getCurrentUser() {

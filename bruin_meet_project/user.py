@@ -32,7 +32,7 @@ def insert_user(email, password):
         if conn is not None:
             conn.close()
     print "Successfully created user", email
-    return True
+    return user_id
 
 def is_valid_email(email):
     print "Validating", email, "... (utils)"
@@ -84,7 +84,7 @@ def is_valid_login(email, password):
             conn.close()
     for row in rows:
         if row[0].rstrip() == email:
-            if check_password(row[1].rstrip(), password):
+            if utils.check_password(row[1].rstrip(), password):
                 print "Valid Login (utils)"
                 return row[2].rstrip() # user_id
             else:

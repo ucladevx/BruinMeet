@@ -22,7 +22,7 @@ def get_meetups(request):
                 print "nonuser_meetups:", nonuser_meetups
                 response = JsonResponse({'valid_user': 'True', 'user_meetups': user_meetups, 'nonuser_meetups':nonuser_meetups})
                 return response
-        user_meetups = ""
+        user_meetups = []
         nonuser_meetups = meetup.get_all_meetups()
         print "nonuser_meetups", nonuser_meetups
         response = JsonResponse({'valid_user': 'False', 'user_meetups': user_meetups, 'nonuser_meetups': nonuser_meetups})
