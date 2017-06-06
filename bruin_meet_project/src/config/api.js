@@ -1,6 +1,8 @@
 import {create} from 'apisauce';
+// import pg from 'pg';
 // const BASE_URL = 'http://ec2-54-193-66-196.us-west-1.compute.amazonaws.com';
 const BASE_URL = 'http://localhost:8000';
+// const DATABASE_URL = 'postgres://bruinmeet:letsbruinmeet@localhost/bruin_meet';
 class API {
   constructor() {
     var getCookie = function (name) {
@@ -78,6 +80,24 @@ class API {
     }
   }
 
+  async editMeetup(meetup) {
+      var body = 'meetup_id=' + encodeURIComponent(meetup.id) + '&new_title=' +
+        encodeURIComponent(meetup.title) + '&new_description=' +
+        encodeURIComponent(meetup.description) + '&new_timestamp=' +
+        encodeURIComponent(meetup.date) + '&new_location=' +
+        encodeURIComponent(meetup.location) + '&new_maxim_cap=' +
+        encodeURIComponent(meetup.maxLimit) + '&new_people=' +
+        encodeURIComponent(meetup.curGoing) + '&num_stars=0' ;
+
+      const res = await this._client.post('/edit_meetup/', body);
+
+      if (res.problem) {
+        console.error(res);
+      }
+
+      return res.data;
+  }
+
   async getMeetups() {
     const res = await this._client.get('/get_meetups/');
 
@@ -98,6 +118,25 @@ class API {
 
     return res.data;
   }
+
+  // search(text) {
+  //   pg.connect(DATABASE_URL, (err, client, done) => {
+  //     done();
+  //     if (err) {
+  //       console.error("Error connecting to client while search: ", err);
+  //       return;
+  //     }
+  //
+  //     client.query("SELECT * FROM main.meetups ", (err, result) => {
+  //       if (err) {
+  //         console.error("Error querying database", err);
+  //         return;
+  //       }
+  //
+  //       console.log(result);
+  //     });
+  //   });
+  // }i
 }
 
 export default new API()

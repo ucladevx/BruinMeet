@@ -122,12 +122,11 @@ def edit_meetup(request):
         maxim_cap = request.POST.get('new_maxim_cap')
         people = request.POST.get('new_people')
         num_stars = request.POST.get('num_stars')
-
         hash_seed = str(title) + str(description) + str(t_time) + str(location) + str(maxim_cap) + str(user_id)
         new_meetup_id = utils.create_hash(hash_seed)
 
         if meetup.edit_meetup(meetup_id, new_meetup_id, title, description, t_time, location, maxim_cap, people, user_id, num_stars):
-            response = HttpResponse('True')
+            response = JsonResponse({ 'Result': 'True', 'new_meetup_id': new_meetup_id })
             return response
         else:
             response = HttpResponse('False')
@@ -160,7 +159,7 @@ def add_user_to_meetup(request):
         response = HttpResponse()
         response.status_code = 500
         return response
-        
+
 # API to remove meetup
 def delete_meetup(request):
     if request.method == "POST":

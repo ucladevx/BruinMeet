@@ -16,6 +16,12 @@
     height: 32%;
     margin: 1.5em;
 }
+.upper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+}
 .side {
     position: absolute;
     width: 10px;
@@ -134,4 +140,8 @@ br {
 .ic-people-d {
     width: 29px;
     height: 18px;
+}
+.edit-buttons {
+  display: flex;
+  flex-direction: row;
 }

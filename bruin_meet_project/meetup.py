@@ -42,13 +42,13 @@ def insert_meetup(title, description, t_time, location, maxim_cap, people, user_
     print "Successfully created meetup"
     return True
 
-def edit_meetup(meetup_id, new_meetup_id, old_title, new_title, description, t_time, location, maxim_cap, people, user_id, num_stars):
-    print "\nEditing meetup", old_title, "to", new_title
+def edit_meetup(meetup_id, new_meetup_id, new_title, description, t_time, location, maxim_cap, people, user_id, num_stars):
+    print "\nEditing meetup", meetup_id, "to new title", new_title
 
     info = [new_meetup_id, new_title, description, t_time, location, maxim_cap, people, user_id, num_stars]
 
     if not is_valid_meetup_info(info):
-        print "Invalid meetup info for:", old_title, "(edit_meetup)"
+        print "Invalid meetup info for:", meetup_id, "(edit_meetup)"
         return False
 
     conn = None
@@ -78,7 +78,7 @@ def add_person_to_meetup(meetup_id, new_user_id):
         rows = cur.fetchall()
         db_user_id = rows[0][2]
         if not rows:
-            print "Could not find user with id:", new_user_id 
+            print "Could not find user with id:", new_user_id
             return False
         cur.execute("select * from main.meetups where id=\'%s\'" % str(meetup_id))
         rows = cur.fetchall()
