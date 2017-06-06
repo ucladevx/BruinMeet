@@ -84,7 +84,7 @@ def is_valid_login(email, password):
             conn.close()
     for row in rows:
         if row[0].rstrip() == email:
-            if check_password(row[1].rstrip(), password):
+            if utils.check_password(row[1].rstrip(), password):
                 print "Valid Login (utils)"
                 return row[2].rstrip() # user_id
             else:
