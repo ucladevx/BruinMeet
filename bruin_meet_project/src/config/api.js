@@ -56,10 +56,7 @@ class API {
       console.error(res);
     }
 
-    if (res.data && res.data.Result === 'Success')
-      return 'Success';
-    else
-      return 'Failure';
+    return res.data;
   }
 
   async create_meetup(info) {

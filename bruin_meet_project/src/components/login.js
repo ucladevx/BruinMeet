@@ -26,9 +26,8 @@ class Login extends Component {
       }
     } else {
       const res = await api.signup({ email: this.state.email, password: this.state.password });
-      console.log(res);
-      if (res === 'Success') {
-        this.props.setCurrentUser({ email: this.state.email });
+      if (res && res.Result === 'Success') {
+        this.props.setCurrentUser({ email: this.state.email, id: res.user_id });
         this.props.toggleLoginModal();
       }
     }

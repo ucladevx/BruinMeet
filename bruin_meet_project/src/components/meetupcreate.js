@@ -75,7 +75,7 @@ class Create extends Component {
                     placeholder={`Tell us more about ${this.state.title?this.state.title:"this meetup"}`}></textarea>
     </div>
     <div className='tags'>
-        <input type='text' className='p-tag' placeholder='add; tags; like; this' onChange={(e) => this.setState({ tags: e.target.value })}></input>
+        <input type='text' className='p-tag' placeholder='add tags like this' onChange={(e) => this.setState({ tags: e.target.value })}></input>
         <input type='number' className='p-ppl' placeholder='Max # of people' onChange={(e)=> this.setState({ num: e.target.value })}></input>
     </div>
     <div className='buttons'>
