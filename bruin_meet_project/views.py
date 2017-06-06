@@ -89,12 +89,12 @@ def create_meetup(request):
         people = request.POST.get('people')
         type_event = request.POST.get('type_event')
         tags = request.POST.get('tags')
-        
+
         cookie = request.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
         if cookie:
             cookie_uID = utils.check_cookie(cookie)
             if cookie_uID:
-                created_meetup = meetup.insert_meetup(title, description, t_time, location, maxim_cap, people, cookie_uID, type_event)
+                created_meetup = meetup.insert_meetup(title, description, t_time, location, maxim_cap, people, cookie_uID, type_event, tags)
                 if created_meetup:
                     response = HttpResponse('True')
                     return response
@@ -125,7 +125,7 @@ def edit_meetup(request):
         people = request.POST.get('new_people')
         num_stars = request.POST.get('num_stars')
         tags = request.POST.get('tags')
-        
+
         hash_seed = str(title) + str(description) + str(t_time) + str(location) + str(maxim_cap) + str(user_id)
         new_meetup_id = utils.create_hash(hash_seed)
 

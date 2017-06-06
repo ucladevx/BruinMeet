@@ -17,7 +17,7 @@ class Create extends Component {
             place: '',
             time: '',
             type: 'social',
-            tags: ['']
+            tags: '',
 	    };
     this.getInputClassNameForType = this.getInputClassNameForType.bind(this);
 	}
@@ -32,7 +32,8 @@ class Create extends Component {
                 timestamp: this.state.time,
                 location: this.state.location,
                 maxim_cap: this.state.num,
-                type: this.state.type
+                type: this.state.type,
+                tags: this.state.tags,
             });
 
             if (res !== true) {
@@ -49,7 +50,6 @@ class Create extends Component {
     }
 
     getInputClassNameForType(type) {
-
       return `c-inputStyles ${type} ${type === this.state.type ? type + '-current' : ''}`;
     }
 
@@ -75,7 +75,7 @@ class Create extends Component {
                     placeholder={`Tell us more about ${this.state.title?this.state.title:"this meetup"}`}></textarea>
     </div>
     <div className='tags'>
-        <input type='text' className='p-tag' placeholder='add; tags; like; this'></input>
+        <input type='text' className='p-tag' placeholder='add; tags; like; this' onChange={(e) => this.setState({ tags: e.target.value })}></input>
         <input type='number' className='p-ppl' placeholder='Max # of people' onChange={(e)=> this.setState({ num: e.target.value })}></input>
     </div>
     <div className='buttons'>

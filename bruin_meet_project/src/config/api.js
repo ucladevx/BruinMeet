@@ -68,7 +68,8 @@ class API {
       encodeURIComponent(info.timestamp) + '&location=' +
       encodeURIComponent(info.location) + '&maxim_cap=' +
       encodeURIComponent(info.maxim_cap) + '&type_event=' +
-      encodeURIComponent(info.type);
+      encodeURIComponent(info.type) + '&tags=' +
+      encodeURIComponent(info.tags);
 
     const res = await this._client.post('/create_meetup/', body, {
       headers: this._defaultHeaders
