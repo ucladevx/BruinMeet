@@ -49,7 +49,7 @@ class Create extends Component {
     </div>
     <div className='loc-div'>
         <input type='text' className='location' placeholder='Location' onChange={(e)=> this.setState({ location: e.target.value })}></input>
-        <input type='datetime-local' className='time' placeholder='Time' onChange={(e)=> this.setState({ time: e.target.value.replace("T", " ") })} pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" required></input>
+        <input type='datetime-local' className='time' placeholder='Time' onChange={(e)=> this.setState({ time: e.target.value.replace("T", " ") })}></input>
     </div>
     <div className='desc'>
         <textarea
