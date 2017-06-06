@@ -64,7 +64,7 @@ def signup(request):
             if not user.is_email_already_used(email):
                 user_id = user.insert_user(email, password)
                 if user_id:
-                    response = HttpResponse('{\"Result\":\"Success\"}')
+                    response = HttpResponse('{\"Result\":\"Success\", \"user_id\":\"' + user_id +'\"}')
                     response.set_signed_cookie(key="uID", value=utils.make_cookie(user_id), salt=production.uID_salt)
                     return response
                 else:
