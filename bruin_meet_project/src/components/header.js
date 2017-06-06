@@ -12,7 +12,7 @@ import '../styles/header.css'
 const Header = (props) => (
   <div className="search-header">
 
-    <img src={logo2} className="ic-logo" />
+    <img src={logo} className="ic-logo" />
     <SearchBar></SearchBar>  
     <input type="image" src={searchIcon} onClick={() => this.handleClick(!this.state.clicked)} className = "ic-search"/>
   
