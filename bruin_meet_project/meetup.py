@@ -30,7 +30,7 @@ def insert_meetup(title, description, t_time, location, maxim_cap, people, user_
         conn = psycopg2.connect(conn_str)
         cur = conn.cursor()
         people = 1
-        cur.execute(sql_mm_in, (meetup_id, title, description, t_time, location, maxim_cap, people, user_id, user_id))
+        cur.execute(sql_mm_in % meetup_id, title, description, t_time, location, maxim_cap, people, user_id, user_id)
         conn.commit()
         cur.close()
     except psycopg2.DatabaseError as error:
