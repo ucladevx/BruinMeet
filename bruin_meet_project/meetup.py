@@ -2,8 +2,8 @@ import psycopg2
 import production, utils
 
 conn_str = production.conn_str
-sql_mm = production.sql_mm
-sql_mm_in = production.sql_mm_in
+sql_mm = 'select * from main.meetups'
+sql_mm_in = 'insert into main.meetups (id, title, description, t_time, location, maxim_cap, people, user_id, user_ids) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);'
 
 def is_valid_meetup_info(info):
     return True

@@ -2,9 +2,9 @@ import psycopg2, re
 import production, utils
 
 conn_str = production.conn_str
-sql_mu = production.sql_mu
-sql_mu_in = production.sql_mu_in
 pass_salt = production.pass_salt
+sql_mu = 'select * from main.users'
+sql_mu_in = 'insert into main.users (email, password, id) values (%s, %s, %s);'
 
 def insert_user(email, password):
     print "\nInserting", email, "with", password, ".... (insert_user)"
