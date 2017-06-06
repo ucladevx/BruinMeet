@@ -87,12 +87,13 @@ def create_meetup(request):
         location = request.POST.get('location')
         maxim_cap = request.POST.get('maxim_cap')
         people = request.POST.get('people')
-
+        type_event = request.POST.get('type_event')
+        
         cookie = request.get_signed_cookie(key="uID", default=False, salt=production.uID_salt)
         if cookie:
             cookie_uID = utils.check_cookie(cookie)
             if cookie_uID:
-                created_meetup = meetup.insert_meetup(title, description, t_time, location, maxim_cap, people, cookie_uID)
+                created_meetup = meetup.insert_meetup(title, description, t_time, location, maxim_cap, people, cookie_uID, type_event)
                 if created_meetup:
                     response = HttpResponse('True')
                     return response

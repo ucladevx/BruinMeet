@@ -8,16 +8,17 @@ sql_mm_in = production.sql_mm_in
 def is_valid_meetup_info(info):
     return True
 
-def insert_meetup(title, description, t_time, location, maxim_cap, people, user_id):
+def insert_meetup(title, description, t_time, location, maxim_cap, people, user_id, type_event):
     print "\nCreating meetup", title
     print "description:\t", description
     print "time:\t\t", t_time
     print "location:\t", location
     print "maximum cap:\t", maxim_cap
-
-    hash_seed = str(title) + str(description) + str(t_time) + str(location) + str(maxim_cap) + str(user_id)
+    print "type:\t", type_event
+    
+    hash_seed = str(title) + str(description) + str(t_time) + str(location) + str(maxim_cap) + str(user_id) + str(type_event)
     meetup_id = utils.create_hash(hash_seed)
-    info = [meetup_id, title, description, t_time, location, maxim_cap]
+    info = [meetup_id, title, description, t_time, location, maxim_cap, type_event]
 
     if not is_valid_meetup_info(info):
         print "Invalid meetup info", title, "(insert_meetup)"
@@ -30,7 +31,7 @@ def insert_meetup(title, description, t_time, location, maxim_cap, people, user_
         conn = psycopg2.connect(conn_str)
         cur = conn.cursor()
         people = 1
-        cur.execute(sql_mm_in, (meetup_id, title, description, t_time, location, maxim_cap, people, user_id, user_id))
+        cur.execute(sql_mm_in % (meetup_id, title, description, t_time, location, maxim_cap, people, user_id, user_id, type_event))
         conn.commit()
         cur.close()
     except psycopg2.DatabaseError as error:
