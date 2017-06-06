@@ -154,3 +154,23 @@ def get_user_meetups(user_id):
 def get_nonuser_meetups(user_id):
     print "\nGetting all nonuser meetups..."
     return get_meetups('select * from main.meetups where user_id != \'' + str(user_id) + '\';')
+
+def get_userID_from_meetupID(meetup_id):
+    conn = None
+    try:
+        conn = psycopg2.connect(conn_str)
+        cur = conn.cursor()
+        cur.execute("select * from main.meetups where id=\'%s\'" % meetup_id)
+        rows = cur.fetchall()
+        if not rows:
+            return False
+        user_id = rows[0][7]
+        cur.close()
+    except psycopg2.DatabaseError as error:
+        print(error)
+        print "Error while getting user id from meetup_id..."
+        return False
+    finally:
+        if conn is not None:
+            conn.close()
+    return user_id
