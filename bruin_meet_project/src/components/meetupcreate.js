@@ -74,13 +74,11 @@ class Create extends Component {
                 />
             </div>
             <div className='buttons'>
-                <label>
-                    <input className="c-inputStyles social" type="button" value="Social" onChange={(e)=> this.setState({ type: "social" })}/>
-                    <input className="c-inputStyles active" type="button" value="Active" onChange={(e)=> this.setState({ type: "active" })}/>
-                    <input className="c-inputStyles food" type="button" value="Food" onChange={(e)=> this.setState({ type: "food" })}/>
-                    <input className="c-inputStyles study" type="button" value="Study" onChange={(e)=> this.setState({ type: "study" })}/>
-                    <input className="c-inputStyles random" type="button" value="Random" onChange={(e)=> this.setState({ type: "random" })}/>
-                </label>
+                <input className="c-inputStyles social" type="button" value="Social" onChange={(e)=> this.setState({ type: "social" })}/>
+                <input className="c-inputStyles active" type="button" value="Active" onChange={(e)=> this.setState({ type: "active" })}/>
+                <input className="c-inputStyles food" type="button" value="Food" onChange={(e)=> this.setState({ type: "food" })}/>
+                <input className="c-inputStyles study" type="button" value="Study" onChange={(e)=> this.setState({ type: "study" })}/>
+                <input className="c-inputStyles random" type="button" value="Random" onChange={(e)=> this.setState({ type: "random" })}/>
             </div>
             <div className='foot'>
                 <input className="inputStyles cre" type="submit" value="Create Meetup" />
