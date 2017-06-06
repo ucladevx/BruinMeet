@@ -70,11 +70,12 @@ class API {
       headers: this._defaultHeaders
     });
 
-    if (res.problem) {
-      console.error(res);
+    if (res.data == "True") {
+      return true;
     }
-
-    return res;
+    else {
+      return false;
+    }
   }
 
   async getMeetups() {
