@@ -26,18 +26,51 @@ class Create extends Component {
         <form>
             <div className='sideBar' />
             <div className='topDiv'>
-                <input type="text" name="title" className='c-title' value="Silicon Valley Watch Party"/>
+                <input
+                    type="text"
+                    name="title"
+                    className='c-title'
+                    placeholder="Silicon Valley Watch Party"
+                    onChange={(e)=> this.setState({ title: e.target.value })}
+                />
             </div>
             <div className='loc-div'>
-                <input type="text" name="time" className='time' value="Time"/>
-                <input type="text" name="location" className='location' value="Location"/>
+                <input
+                    type="text"
+                    name="time"
+                    className='time'
+                    placeholder="Time"
+                    onChange={(e)=> this.setState({ time: e.target.value })}
+                />
+                <input
+                    type="text"
+                    name="location"
+                    className='location'
+                    placeholder="Location"
+                    onChange={(e)=> this.setState({ location: e.target.value })}
+                />
             </div>
             <div className='desc'>
-                <textarea>Dinesh gets back to the ground while Richard continues to explore his new project. Gavin tries to come out of the new problem he has gotten himself into and interestingly the chemistry between Richard and Monica takes a new turn.</textarea>
+                <textarea
+                    name="description"
+                    onChange={(e)=> this.setState({ description: e.target.value })}
+                    placeholder="Dinesh gets back to the ground while Richard continues to explore his new project. Gavin tries to come out of the new problem he has gotten himself into and interestingly the chemistry between Richard and Monica takes a new turn."></textarea>
             </div>
             <div className='tags'>
-                <input type="text" name="tags" className='p-tag' value="add; tags; like; this"/>
-                <input type="text" name="ppl" className='p-ppl' value="15 ppl"/>
+                <input
+                    type="text"
+                    name="tags"
+                    className='p-tag'
+                    placeholder="add; tags; like; this"
+                    onChange={(e)=> this.setState({ tags: e.target.value.split(';').map((str) => str.trim()) })}
+                />
+                <input
+                    type="number"
+                    name="num"
+                    className='p-ppl'
+                    placeholder="# of people"
+                    onChange={(e)=> this.setState({ num: e.target.value })}
+                />
             </div>
             <div className='buttons'>
                 <label>
