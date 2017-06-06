@@ -23,19 +23,25 @@ class Create extends Component {
 
     async handleSubmit(e) {
         e.preventDefault();
-        const res = await api.create_meetup({
-            title: this.state.title,
-            description: this.state.description,
-            timestamp: this.state.time,
-            location: this.state.location,
-            maxim_cap: this.state.num
-        });
 
-        if (res !== true) {
-            alert("There was a problem: " + res.data);
+        if (this.state.title && this.state.description && this.state.time && this.state.location && this.state.num) {
+            const res = await api.create_meetup({
+                title: this.state.title,
+                description: this.state.description,
+                timestamp: this.state.time,
+                location: this.state.location,
+                maxim_cap: this.state.num
+            });
+
+            if (res !== true) {
+                alert("Unknown error occurred.");
+            }
+            else {
+                this.props.toggleMeetupModal();
+            }
         }
         else {
-            this.props.toggleMeetupModal();
+            alert("Please fill in all of the fields.");
         }
     }
 
