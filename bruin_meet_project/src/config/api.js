@@ -41,7 +41,7 @@ class API {
       return 'Network Failure';
     }
 
-    return res.data == 'True';
+    return res.data;
   }
 
   async logout() {

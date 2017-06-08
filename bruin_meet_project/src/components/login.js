@@ -4,22 +4,22 @@ import api from '../config/api.js';
 import '../styles/login.css';
 
 class Login extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			email: '',
-			password: '',
-  		name: '',
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      name: '',
       showError: false,
-		};
-	}
+    };
+  }
 
   async handleSubmit(e) {
     e.preventDefault();
     if (!this.props.showSignup) {
       const res = await api.login({ email: this.state.email, password: this.state.password });
-      if (res) {
-        this.props.setCurrentUser({ email: this.state.email });
+      if (res && res.Result === "Success") {
+        this.props.setCurrentUser({ email: this.state.email, id: res.user_id });
         this.props.toggleLoginModal();
       } else {
         this.setState({ showError: true })

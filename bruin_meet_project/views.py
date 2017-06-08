@@ -38,7 +38,7 @@ def login(request):
         password = str(request.POST.get('password'))
         user_id = user.is_valid_login(email, password)
         if user_id:
-            response = HttpResponse('True')
+            response = HttpResponse('{\"Result\":\"Success\", \"user_id\":\"' + user_id +'\"}')
             response.set_signed_cookie(key="uID", value=utils.make_cookie(user_id), salt=production.uID_salt)
             return response
         response = HttpResponse('False')
